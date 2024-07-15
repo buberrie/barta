@@ -1,0 +1,762 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+* @license
+*
+* Font Family: Supreme
+* Designed by: Jérémie Hornus, Ilya Naumoff
+* URL: https://www.fontshare.com/fonts/supreme
+* © 2024 Indian Type Foundry
+*
+
+* Supreme Regular 
+* Supreme Medium 
+
+*
+*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: "Supreme-Regular";
+  src: url("../fonts/Supreme-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Supreme-Medium";
+  src: url("../fonts/Supreme-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Supreme-Bold";
+  src: url("../fonts/Supreme-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Coolvetica";
+  src: url("../fonts/coolvetica\ rg.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --gradient-1: linear-gradient(90deg, #5a00fe 0.69%, #fd5265 104.89%);
+  --gradient-2: linear-gradient(
+    90deg,
+    #5a00fe 0.66%,
+    #fd5265 55.59%,
+    #fecb00 107.34%
+  );
+  --gradient-3: linear-gradient(
+    90deg,
+    #5a00fe,
+    #fd5265,
+    #fecb00,
+    #5a00fe,
+    #fd5265,
+    #fecb00
+  );
+
+  --space: 4rem;
+
+  /* width and height for line animation svg */
+  --svg-width: 83rem; /* 1360px / 16 */
+  --svg-height: 38.8125rem; /* 621px / 16 */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Coolvetica", sans-serif;
+}
+
+h2 {
+  @apply base:text-[2.5rem] text-[1.412rem] base:leading-[4.04375rem] leading-[2.28444rem];
+}
+
+body {
+  @apply bg-black_900 text-white max-w-[1440px] mx-auto;
+  font-family: "Supreme-Regular", sans-serif;
+}
+
+/* general styling */
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.flex-start {
+  @apply flex justify-start items-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
+
+.padding-x {
+  @apply lg:px-[5.5rem] base:px-[3.5rem] px-4;
+}
+
+.input {
+  @apply bg-transparent w-[80%] focus:border-none focus:outline-none focus:bg-transparent;
+}
+
+.input-radio {
+  @apply bg-transparent hidden focus:border-none focus:outline-none focus:bg-transparent;
+}
+
+Image {
+  @apply w-full h-full absolute object-contain;
+}
+
+.overflow-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+.overflow-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+/* dropdown component */
+.dropdown-open-animation {
+  animation: dropdownAnimation 500ms forwards;
+}
+
+.dropdown-close-animation {
+  animation: dropdownCloseAnimation 300ms forwards;
+}
+
+.dropdown-icon-open {
+  animation: openFlipAnimation 300ms forwards;
+}
+
+.dropdown-icon-close {
+  animation: closeFlipAnimation 300ms forwards;
+}
+
+.trade {
+  @apply border-[0.5px] border-black_100 hover:border-white w-fit px-[0.75rem] py-[0.38rem] rounded-[3.25rem] base:text-[0.75rem] text-[0.625rem] text-black_100 hover:text-white;
+}
+
+.fiat-dropdown {
+  @apply border-[0.5px] border-black_100 hover:border-white w-fit px-4 py-2 rounded-[3.25rem] base:text-[1.2rem] text-base text-black_200 hover:text-white font-[Coolvetica] relative base:-top-4 -top-3;
+}
+
+.pay-with {
+  @apply w-full p-4 pl-[1.6rem] rounded-[0.25rem] text-black_300 base:text-[1.125rem] text-sm relative -top-8;
+  background-color: rgba(51, 51, 51, 0.4);
+}
+
+/* button style */
+.btn-primary {
+  @apply transition-all base:py-[0.8125rem] py-[0.625rem] base:px-[1.875rem] px-6 border-none;
+  background: var(--gradient-2);
+  background-size: 200%;
+  transition: background-size 500ms;
+}
+
+.btn-primary:hover {
+  background-size: 100%;
+}
+
+.btn-secondary {
+  @apply base:py-[0.8125rem] py-[0.625rem] base:px-[1.875rem] px-6 relative transition-all;
+  background: transparent;
+  z-index: 1;
+}
+
+.btn-secondary::after {
+  content: "";
+  position: absolute;
+  width: calc(100% + 0.1rem);
+  height: calc(100% + 0.1rem);
+  border-radius: 2.5rem;
+  background: var(--gradient-1);
+  z-index: -1;
+  transition: all 0.1s ease;
+  border-radius: inherit;
+  padding: 2px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+}
+
+.btn-secondary:hover::after {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.btn-arrow {
+  @apply transition-all p-[1rem] border-none rounded-full flex-center;
+  background: var(--gradient-2);
+  background-size: 200%;
+  transition: background-size 500ms;
+}
+
+.btn-arrow:hover {
+  background-size: 100%;
+}
+
+.btn-tertiary {
+  @apply bg-transparent text-[#8A8A8A] hover:text-white transition-all;
+}
+
+.line {
+  @apply h-[0.25rem] absolute top-[1.55rem] rounded-[2.5rem] transition-all duration-500;
+  background-image: var(--gradient-2);
+  opacity: 0;
+  width: 0%;
+  animation: btnAfterHoverAnimation 300ms forwards;
+}
+
+.btn-tertiary:hover .line,
+.btn-secondary:hover .line {
+  opacity: 1;
+  width: 100%;
+  animation: btnHoverAnimation 1s cubic-bezier(0.2, 0, 0.8, 1) forwards;
+}
+
+.get-started-btn svg {
+  transition: width 300ms linear;
+}
+
+.get-started-btn:hover svg {
+  width: 18px;
+  height: 11px;
+}
+
+.flex-reverse {
+  @apply flex-row-reverse;
+}
+
+.color-white {
+  @apply text-white;
+}
+
+.box-shadow {
+  box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12),
+    0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+}
+
+.selected-line {
+  @apply h-[0.25rem] w-full rounded-[2.5rem] transition-all duration-500;
+  background: var(--gradient-1);
+}
+
+/* click animation */
+.click_effect {
+  @apply base:w-8 base:h-8 w-6 h-6 base:-mt-4 base:-ml-4 -ml-3 -mt-3;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1.5px solid white;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: clickEffectAnimation 0.4s linear;
+  opacity: 0;
+  z-index: 20;
+}
+
+/* navigation bar style */
+.nav-general {
+  @apply text-white;
+  background: rgba(51, 51, 51, 0.3);
+  backdrop-filter: blur(40px);
+}
+
+.nav-dashboard {
+  @apply text-black;
+  background: rgba(51, 51, 51, 0.3);
+  backdrop-filter: blur(40px);
+}
+
+.bg-blur {
+  background: rgba(51, 51, 51, 0.3);
+  backdrop-filter: blur(100px);
+}
+
+.qr-code,
+.conversion-alert {
+  transition-property: opacity ease;
+  transition-duration: 500ms;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app-container:hover .qr-code,
+.conversion-popup:hover .conversion-alert {
+  transition-property: opacity ease;
+  transition-duration: 1s;
+  opacity: 1;
+}
+
+/* hero section */
+.salary {
+  top: 0rem;
+  animation: textSalaryAnimation 10s infinite;
+}
+
+.crypto {
+  top: 4.9rem;
+  animation: textCryptoAnimation 10s infinite;
+}
+
+.fiat {
+  top: 4.9rem;
+  animation: textFiatAnimation 10s infinite;
+}
+
+/* linear-text */
+.linear-text {
+  background: var(--gradient-3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 250%;
+  /* animation: textAnimation 3s infinite; */
+}
+
+.scroll-animation {
+  animation: scroll 10s linear infinite;
+}
+
+.scroll-animation2 {
+  animation: scroll2 10s linear infinite;
+}
+
+.scroll-blur {
+  mask: linear-gradient(
+    transparent,
+    transparent,
+    white 30%,
+    white 70%,
+    transparent
+  );
+  -webkit-mask: linear-gradient(transparent, white 30%, white 70%, transparent);
+}
+
+.linear-bg {
+  background: var(--gradient-2);
+  border-radius: 1.5rem;
+}
+
+.linear-bg .img-container {
+  height: calc(100% - 2rem);
+}
+
+/* built for freelancers section */
+.grid-card {
+  @apply flex justify-between flex-col bg-blur gap-[7.3rem];
+  border-radius: 1.25rem;
+  padding: 2rem 1.5rem;
+}
+
+.grid-card > span {
+  @apply text-black_200 text-sm font-[Supreme-Medium] uppercase;
+  letter-spacing: 0.14156rem;
+}
+
+.grid-card > h3,
+.steriods-h3 {
+  @apply leading-[2.427rem] text-xl;
+}
+
+/* steriods section */
+.bg-glow {
+  width: 17.3125rem;
+  height: 17.3125rem;
+  border-radius: 50%;
+  opacity: 0.6;
+  background: #5a00fe;
+  filter: blur(100px);
+  z-index: -10;
+}
+
+/* testimonial */
+.dashed-border {
+  @apply px-6 border-[0.1rem] border-black_400 border-dashed rounded-[16px];
+}
+
+/* creates a snap effect as you scroll */
+.scroll-snap {
+  scroll-snap-type: inline mandatory;
+  scroll-padding-inline: 1.5rem;
+}
+
+.scroll-snap > * {
+  scroll-snap-align: start;
+}
+
+/* faq section */
+.show-answer {
+  animation: toggleAnswerOn 500ms linear forwards;
+}
+
+.hide-answer {
+  animation: toggleAnswerOff 500ms linear forwards;
+}
+
+/* footer component */
+.phone:hover {
+  animation: wiggle 750ms linear infinite;
+}
+
+.back-to-top:hover .btt-icon {
+  background-color: #4000b4;
+}
+
+.icon:hover .idle,
+.hover {
+  animation: fadeOut 300ms linear forwards;
+}
+
+.icon:hover .hover,
+.idle {
+  animation: fadeIn 300ms linear forwards;
+}
+
+/* animations */
+@keyframes clickEffectAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes btnAfterHoverAnimation {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+@keyframes btnHoverAnimation {
+  0% {
+    width: 0%;
+  }
+  25% {
+    width: 105%;
+  }
+  75% {
+    width: 95%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes textAnimation {
+  0% {
+    background-position: right;
+  }
+  100% {
+    background-position: left;
+  }
+}
+
+@keyframes textSalaryAnimation {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+  30% {
+    top: 0;
+    opacity: 1;
+  }
+  31.5% {
+    top: -5rem;
+    opacity: 0;
+  }
+  92.5% {
+    top: -5rem;
+    opacity: 0;
+  }
+  94.5% {
+    top: 2rem;
+    opacity: 1;
+  }
+  96.5% {
+    top: -1rem;
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes textCryptoAnimation {
+  0% {
+    top: 5rem;
+    opacity: 0;
+  }
+  30% {
+    top: 5rem;
+    opacity: 0;
+  }
+  31.5% {
+    top: -1.5rem;
+    opacity: 1;
+  }
+  33.5% {
+    top: 0.5rem;
+    opacity: 1;
+  }
+  36.5% {
+    top: 0;
+    opacity: 1;
+  }
+  63.5% {
+    top: 0;
+    opacity: 1;
+  }
+  65.5% {
+    top: -5rem;
+    opacity: 0;
+  }
+  100% {
+    top: -5rem;
+    opacity: 0;
+  }
+}
+
+@keyframes textFiatAnimation {
+  0% {
+    top: 5rem;
+    opacity: 0;
+  }
+  63.5% {
+    top: 5rem;
+    opacity: 0;
+  }
+  65.5% {
+    top: -1.5rem;
+    opacity: 1;
+  }
+  67.5% {
+    top: 0.5rem;
+    opacity: 1;
+  }
+  70.5% {
+    top: 0;
+    opacity: 1;
+  }
+  92.5% {
+    top: 0;
+    opacity: 1;
+  }
+  94% {
+    top: 5rem;
+    opacity: 0;
+  }
+  100% {
+    top: 5rem;
+    opacity: 0;
+  }
+}
+
+@keyframes dropdownAnimation {
+  0% {
+    top: -1rem;
+    opacity: 0;
+  }
+  65% {
+    top: 2.6rem;
+    opacity: 1;
+  }
+  100% {
+    top: 2.4rem;
+    opacity: 1;
+  }
+}
+
+@keyframes dropdownCloseAnimation {
+  0% {
+    top: 2.5rem;
+    opacity: 1;
+  }
+  100% {
+    top: 1rem;
+    opacity: 0;
+  }
+}
+
+@keyframes openFlipAnimation {
+  from {
+    transform: rotatex(0);
+  }
+  to {
+    transform: rotateX(180deg);
+  }
+}
+
+@keyframes closeFlipAnimation {
+  from {
+    transform: rotatex(180deg);
+  }
+  to {
+    transform: rotateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes scroll {
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scroll2 {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes toggleAnswerOn {
+  from {
+    transform: rotatex(0);
+    opacity: 1;
+  }
+  to {
+    transform: rotateX(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes toggleAnswerOff {
+  from {
+    transform: rotatex(180deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-0.5deg);
+  }
+  50% {
+    transform: rotate(0.5deg);
+  }
+}
+
+/* MEDIA QUERY FOR RESPONSIVENESS */
+
+@media only screen and (min-width: 1300px) and (max-width: 1440px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-width: 1190px) and (max-width: 1300px) {
+  html {
+    font-size: 13.3px;
+  }
+}
+
+@media only screen and (min-width: 1080px) and (max-width: 1190px) {
+  html {
+    font-size: 12px;
+  }
+
+  :root{
+    --svg-width: 82rem; /* 1360px / 16 */
+    }
+  
+}
+
+@media only screen and (min-width: 960px) and (max-width: 1080px) {
+  html {
+    font-size: 11px;
+  }
+
+  :root{
+    --svg-width: 81rem; /* 1360px / 16 */
+    }
+
+    body {
+      background-color: yellow;
+    }
+
+}
+
+@media only screen and (min-width: 860px) and (max-width: 960px) {
+  html {
+    font-size: 10px;
+  }
+
+  :root{
+    --svg-width: 80rem;
+    }
+
+    body {
+      background-color: red;
+    }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 860px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+/* @media only screen and (min-width: 540px) and (max-width: 700px) {
+  html {
+    font-size: 7px;
+  }
+} */
+
+@media (max-width: 390px) {
+  :root {
+    /* width and height for line animation svg */
+    --svg-width: 23.5rem; /* 368px / 16 */
+    --svg-height: 34.375rem; /* 550px / 16 */
+
+    --space: 2rem;
+  }
+
+
+}

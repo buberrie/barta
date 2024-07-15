@@ -1,0 +1,13 @@
+<svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Property 1=Hover">
+<circle id="Ellipse 8" cx="19" cy="19" r="19" fill="url(#paint0_linear_696_356)"/>
+<path id="Vector" d="M29.1905 12.5459L26.1349 26.9559C25.9044 27.973 25.3032 28.2261 24.4489 27.747L19.7932 24.3162L17.5468 26.4768C17.2981 26.7254 17.0902 26.9333 16.6111 26.9333L16.9456 22.1918L25.5744 14.3946C25.9496 14.0601 25.4931 13.8748 24.9913 14.2093L14.3239 20.9261L9.73152 19.4888C8.73258 19.1769 8.7145 18.4898 9.93944 18.0107L27.9023 11.0904C28.734 10.7785 29.4617 11.2758 29.1905 12.5459Z" fill="white"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_696_356" x1="0.25" y1="19" x2="40.7905" y2="19" gradientUnits="userSpaceOnUse">
+<stop stop-color="#5A00FE"/>
+<stop offset="0.514884" stop-color="#FD5265"/>
+<stop offset="1" stop-color="#FECB00"/>
+</linearGradient>
+</defs>
+</svg>

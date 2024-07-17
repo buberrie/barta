@@ -286,7 +286,7 @@ export const TradeCard = () => {
                 />
               </div>
             ))}
-            <span className=" cursor-pointer text-[0.8rem] text-black_300 hover:text-white hover:underline transition-all">
+            <span className="whitespace-nowrap cursor-pointer text-[0.8rem] text-black_300 hover:text-white hover:underline transition-all">
               + 200 more
             </span>
           </div>
@@ -484,7 +484,7 @@ export const TradeCard = () => {
                 />
               </div>
             ))}
-            <span className=" cursor-pointer text-[0.8rem] text-black_300 hover:text-white hover:underline transition-all">
+            <span className="whitespace-nowrap cursor-pointer text-[0.8rem] text-black_300 hover:text-white hover:underline transition-all">
               + 200 more
             </span>
           <p className={`absolute base:-top-[1.48rem] -top-[1.35rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${errors.wallet ? "opacity-100" : "opacity-0"}`}>{errors.wallet}</p>

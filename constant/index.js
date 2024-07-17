@@ -6,10 +6,11 @@ export const trades = [
     value: [
       "fiat",
       <svg
+        className="base:w-[0.69rem] w-[0.5rem]"
         key={1}
         xmlns="http://www.w3.org/2000/svg"
-        width="11"
-        height="9"
+        width="0.69rem"
+        height="0.56rem"
         viewBox="0 0 11 9"
         fill="none">
         <path
@@ -29,10 +30,11 @@ export const trades = [
     value: [
       "fiat",
       <svg
+        className="md:w-[0.69rem] w-[0.5rem]"
         key={0}
         xmlns="http://www.w3.org/2000/svg"
-        width="11"
-        height="9"
+        width="0.69rem"
+        height="0.56rem"
         viewBox="0 0 11 9"
         fill="none">
         <path
@@ -68,13 +70,17 @@ export const currencyCrypto = [
   },
   {
     id: "btc",
-    value: "Bitcoin",
+    value: [
+      <Image key={1} src="./assets/svgs/Bitcoin.svg" alt="usdt" width={21} height={20} className="base:w-[1.5rem] base:h-[1.5rem] w-[1rem] h-[1.1rem]"/>,
+    "Bitcoin"],
     name: "Bitcoin",
-    min: 0.0001
+    min: 0.0005
   },
   {
     id: "eth",
-    value: "Ethereum",
+    value: [
+      <Image key={2} src="./assets/svgs/ethereum-icon.svg" alt="usdt" width={21} height={20} className="w-[1.5rem] base:h-[1.5rem] -ml-2"/>,
+    "Ethereum"],
     name: "Ethereum",
     min: 0.01
   },
@@ -258,27 +264,27 @@ export const getStarted = [
   {
     id: 1,
     text: "Select the crypto, payment method and amount you wish to buy or sell.",
-    imgUrl: "./assets/images/process-1.png",
+    imgUrl: "/assets/images/process-1.png",
   },
   {
     id: 2,
     text: "Choose an offer that best suits you from one of our reputable merchants.",
-    imgUrl: "./assets/images/process-2.png",
+    imgUrl: "/assets/images/process-2.png",
   },
   {
     id: 3,
     text: "Sign up, verify your identity and add a payment method to begin trading.",
-    imgUrl: "./assets/images/process-3.png",
+    imgUrl: "/assets/images/process-3.png",
   },
   {
     id: 4,
     text: "Make the payment using the right payment details and click “Transferred”.",
-    imgUrl: "./assets/images/process-4.png",
+    imgUrl: "/assets/images/process-4.png",
   },
   {
     id: 5,
     text: "Merchant confirms your payment and releases crypto into your wallet.",
-    imgUrl: "./assets/images/process-5.png",
+    imgUrl: "/assets/images/process-5.png",
   },
 ]
 
@@ -442,19 +448,19 @@ export const merchantFaqs = [
 export const socials = [
   {
     id: "twitter",
-    url: "www.twitter.com",
+    url: "http://www.twitter.com",
     imgUrl: "./assets/svgs/twitter.svg",
     imgHoverUrl: "./assets/svgs/twitter-hover.svg"
   },
   {
     id: "linkedin",
-    url: "www.linkedin.com",
+    url: "http://www.linkedin.com",
     imgUrl: "./assets/svgs/linkedin.svg",
     imgHoverUrl: "./assets/svgs/linkedin-hover.svg"
   },
   {
     id: "telegram",
-    url: "www.telegram.com",
+    url: "http://www.telegram.com",
     imgUrl: "./assets/svgs/telegram.svg",
     imgHoverUrl: "./assets/svgs/telegram-hover.svg"
   },

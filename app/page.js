@@ -16,11 +16,11 @@ export default function Home() {
       <Hero />
        <LineAnimation/>
       <GetStarted/>
-      {/*<BuiltFor/>
+      <BuiltFor/>
       <Steriods/>
       <Testimonials/>
       <Faq/>
-      <Footer/> */}
+      <Footer/>
     </ClickEffect>
   );
 }

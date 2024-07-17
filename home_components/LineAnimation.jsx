@@ -4,10 +4,10 @@ import React from "react";
 
 export const LineAnimation = () => {
   return (
-    <section className="overflow-hidden padding-x flex-center flex-col relative base:mt-[12rem] mt-[40rem] pt-[8rem] mb-10">
+    <section className=" overflow-hidden padding-x flex-center flex-col relative base:mt-[22rem] mt-[48rem] pt-4 ">
+      {/* line animation */}
       <div className="relative">
-
-        {/* desktop svg */}
+        {/* desktop animated svg */}
         <svg
           style={{
             width: "calc(var(--svg-width) + 2.25rem)",
@@ -19,7 +19,7 @@ export const LineAnimation = () => {
           {/* Define the path for the animated line */}
           <path
             id="animated-line"
-            d="M 10 10 L 1263 10 L 1263 621 L 10 621 Z"
+            d="M 10 0 L 1263 0 L 1263 621 L 10 621 Z"
             fill="none"
             stroke="black"
             strokeWidth="5rem"
@@ -34,7 +34,7 @@ export const LineAnimation = () => {
           </path>
         </svg>
 
-        {/* mobile svg */}
+        {/* mobile animated svg */}
         <svg
           style={{
             width: "calc(var(--svg-width) + 2.25rem)",
@@ -94,8 +94,8 @@ export const LineAnimation = () => {
              ry="1.5rem" /* 30px / 16 */
             fill="none"
             stroke="url(#gradient)"
-            strokeWidth="0.15rem"
-            strokeDasharray= "6, 3"
+            strokeWidth="0.125rem"
+            strokeDasharray= "4, 2"
             strokeDashoffset= "0"
             style={{ width: "var(--svg-width)", height: "var(--svg-height)" }}
           />
@@ -139,15 +139,17 @@ export const LineAnimation = () => {
       </div>
 
       {/* main content */}
-      <div className="gap-12 flex justify-between base:items-start items-center base:flex-row flex-col absolute border-dashed base:border-[0.125rem] border-[0.08rem] base:rounded-[1.5rem] rounded-[1.15rem] border-black_400 base:px-[6.5rem] base:py-[4.5rem] p-14" style={{
+      <div className="gap-12 flex justify-between base:flex-row flex-col absolute border-dashed base:border-[0.1rem] border-[0.08rem] base:rounded-[1.5rem] rounded-[1.15rem] border-black_400 base:px-[6.5rem] base:py-[4.5rem] p-14" style={{
             width: "calc(var(--svg-width) + 0.064rem)",
             height: "calc(var(--svg-height) + 0.064rem)",
           }}>
-        <h2 className=" base:leading-[4.5rem] leading-[2.29rem] base:text-[2.6rem] text-[1.412rem] base:w-[45%] w-full base:my-auto">
+
+        <h2 className=" base:leading-[4.5rem] leading-[2.29rem] base:text-[2.6rem] text-[1.412rem] base:w-[45%] w-full base:my-auto mx-auto">
           <span className="linear-text mr-2">Bridging the gap</span>
           between traditional finance and blockchain technology.
         </h2>
-        <div className=" flex base:gap-[4.5rem] gap-[3rem] scroll-blur overflow-hidden">
+
+        <div className=" mx-auto flex base:gap-[4.5rem] gap-[3rem] scroll-blur overflow-hidden">
           <div className="divide-y-[0.1rem] flex-col h-fit scroll-animation divide-black_400 divide-dashed ">
             {logos1.map((logo, index) => (
               <div key={index} className={`base:py-12 py-[1.75rem] w-full flex justify-center`}>
@@ -156,11 +158,12 @@ export const LineAnimation = () => {
                   alt={logo.id}
                   width={150}
                   height={50}
-                  className="base:w-[9rem] h-[2.5rem] w-[6rem]"
+                  className="base:w-[9rem] h-[2.5rem] w-[5.5rem]"
                 />
               </div>
             ))}
           </div>
+
           <div className="divide-y-[0.1rem] mr-[1rem] relative bottom-0 flex-col h-fit scroll-animation2 divide-black_400 divide-dashed ">
             {logos2.map((logo, index) => (
               <div key={index} className={`base:py-12 py-[1.75rem] w-full flex justify-center`}>
@@ -169,7 +172,7 @@ export const LineAnimation = () => {
                   alt={logo.id}
                   width={150}
                   height={50}
-                  className="base:w-[9rem] h-[2.5rem] w-[6rem]"
+                  className="base:w-[9rem] h-[2.5rem] w-[5.5rem]"
                 />
               </div>
             ))}

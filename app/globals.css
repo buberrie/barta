@@ -132,42 +132,12 @@ Image {
   display: none; /* Chrome, Safari, and Opera */
 }
 
-/* dropdown component */
-.dropdown-open-animation {
-  animation: dropdownAnimation 500ms forwards;
-}
-
-.dropdown-close-animation {
-  animation: dropdownCloseAnimation 300ms forwards;
-}
-
-.dropdown-icon-open {
-  animation: openFlipAnimation 300ms forwards;
-}
-
-.dropdown-icon-close {
-  animation: closeFlipAnimation 300ms forwards;
-}
-
-.trade {
-  @apply border-[0.5px] border-black_100 hover:border-white w-fit px-[0.75rem] py-[0.38rem] rounded-[3.25rem] base:text-[0.75rem] text-[0.625rem] text-black_100 hover:text-white;
-}
-
-.fiat-dropdown {
-  @apply border-[0.5px] border-black_100 hover:border-white w-fit px-4 py-2 rounded-[3.25rem] base:text-[1.2rem] text-base text-black_200 hover:text-white font-[Coolvetica] relative base:-top-4 -top-3;
-}
-
-.pay-with {
-  @apply w-full p-4 pl-[1.6rem] rounded-[0.25rem] text-black_300 base:text-[1.125rem] text-sm relative -top-8;
-  background-color: rgba(51, 51, 51, 0.4);
-}
-
 /* button style */
 .btn-primary {
   @apply transition-all base:py-[0.8125rem] py-[0.625rem] base:px-[1.875rem] px-6 border-none;
   background: var(--gradient-2);
   background-size: 200%;
-  transition: background-size 500ms;
+  transition: background-size 300ms;
 }
 
 .btn-primary:hover {
@@ -203,7 +173,7 @@ Image {
 }
 
 .btn-arrow {
-  @apply transition-all p-[1rem] border-none rounded-full flex-center;
+  @apply transition-all base:p-4 p-3 border-none rounded-full flex-center;
   background: var(--gradient-2);
   background-size: 200%;
   transition: background-size 500ms;
@@ -230,46 +200,6 @@ Image {
   opacity: 1;
   width: 100%;
   animation: btnHoverAnimation 1s cubic-bezier(0.2, 0, 0.8, 1) forwards;
-}
-
-.get-started-btn svg {
-  transition: width 300ms linear;
-}
-
-.get-started-btn:hover svg {
-  width: 18px;
-  height: 11px;
-}
-
-.flex-reverse {
-  @apply flex-row-reverse;
-}
-
-.color-white {
-  @apply text-white;
-}
-
-.box-shadow {
-  box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12),
-    0px 4px 4px -2px rgba(24, 39, 75, 0.08);
-}
-
-.selected-line {
-  @apply h-[0.25rem] w-full rounded-[2.5rem] transition-all duration-500;
-  background: var(--gradient-1);
-}
-
-/* click animation */
-.click_effect {
-  @apply base:w-8 base:h-8 w-6 h-6 base:-mt-4 base:-ml-4 -ml-3 -mt-3;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1.5px solid white;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: clickEffectAnimation 0.4s linear;
-  opacity: 0;
-  z-index: 20;
 }
 
 /* navigation bar style */
@@ -328,7 +258,80 @@ Image {
   background-clip: text;
   color: transparent;
   background-size: 250%;
-  /* animation: textAnimation 3s infinite; */
+  animation: textAnimation 3s infinite;
+}
+
+/* dropdown component */
+.dropdown-open-animation {
+  animation: dropdownAnimation 500ms forwards;
+}
+
+.dropdown-close-animation {
+  animation: dropdownCloseAnimation 300ms forwards;
+}
+
+.dropdown-icon-open {
+  animation: openFlipAnimation 300ms forwards;
+}
+
+.dropdown-icon-close {
+  animation: closeFlipAnimation 300ms forwards;
+}
+
+.trade {
+  @apply border-[0.5px] border-black_100 hover:border-white w-fit px-[0.75rem] py-[0.38rem] rounded-[3.25rem] base:text-[0.75rem] text-[0.625rem] text-black_100 hover:text-white;
+}
+
+.fiat-dropdown {
+  @apply border-[0.5px] border-black_100 hover:border-white w-fit px-4 py-2 rounded-[3.25rem] base:text-[1.2rem] text-base text-black_200 hover:text-white font-[Coolvetica] relative base:-top-4 -top-3;
+}
+.fiat-dropdown.error {
+  @apply border-[#fd5265] text-[#fd5265];
+}
+
+.pay-with {
+  @apply w-full p-4 pl-[1.6rem] rounded-[0.25rem] text-black_100 base:text-[1.125rem] text-[0.95rem] relative -top-8;
+  background-color: rgba(51, 51, 51, 0.4);
+}
+
+.get-started-btn svg {
+  transition: width 300ms linear;
+}
+
+.get-started-btn:hover svg {
+  width: 18px;
+  height: 11px;
+}
+
+.flex-reverse {
+  @apply flex-row-reverse;
+}
+
+.color-white {
+  @apply text-white;
+}
+
+.box-shadow {
+  box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12),
+    0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+}
+
+.selected-line {
+  @apply h-[0.25rem] w-full rounded-[2.5rem] transition-all duration-500;
+  background: var(--gradient-1);
+}
+
+/* click animation */
+.click_effect {
+  @apply base:w-8 base:h-8 w-6 h-6 base:-mt-4 base:-ml-4 -ml-3 -mt-3;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1.5px solid white;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: clickEffectAnimation 0.4s linear;
+  opacity: 0;
+  z-index: 20;
 }
 
 .scroll-animation {
@@ -350,30 +353,40 @@ Image {
   -webkit-mask: linear-gradient(transparent, white 30%, white 70%, transparent);
 }
 
+.scroll-blur_s {
+  mask: linear-gradient(
+    transparent,
+    transparent,
+    white 30%,
+    white 70%,
+    transparent
+  );
+  -webkit-mask: linear-gradient(transparent, white 15%, white 85%, transparent);
+}
+
 .linear-bg {
+  @apply base:rounded-r-3xl rounded-[1rem];
   background: var(--gradient-2);
-  border-radius: 1.5rem;
 }
 
 .linear-bg .img-container {
-  height: calc(100% - 2rem);
+  height: calc(100% - 1.8rem);
 }
 
 /* built for freelancers section */
 .grid-card {
-  @apply flex justify-between flex-col bg-blur gap-[7.3rem];
+  @apply flex justify-between flex-col bg-blur base:gap-[7.3rem] gap-14;
   border-radius: 1.25rem;
   padding: 2rem 1.5rem;
 }
 
 .grid-card > span {
-  @apply text-black_200 text-sm font-[Supreme-Medium] uppercase;
-  letter-spacing: 0.14156rem;
+  @apply text-black_200 base:text-sm text-s font-[Supreme-Medium] uppercase;
 }
 
 .grid-card > h3,
 .steriods-h3 {
-  @apply leading-[2.427rem] text-xl;
+  @apply base:leading-[2.427rem] leading-[1.618rem] base:text-xl text-[0.95rem];
 }
 
 /* steriods section */
@@ -389,7 +402,7 @@ Image {
 
 /* testimonial */
 .dashed-border {
-  @apply px-6 border-[0.1rem] border-black_400 border-dashed rounded-[16px];
+  @apply base:px-6 px-3.5 border-[0.1rem] border-black_400 border-dashed rounded-[16px];
 }
 
 /* creates a snap effect as you scroll */
@@ -428,6 +441,10 @@ Image {
 .icon:hover .hover,
 .idle {
   animation: fadeIn 300ms linear forwards;
+}
+
+.language-select {
+  @apply border-[0.5px] border-black_100 hover:border-white w-fit px-4 py-2 rounded-[3.25rem] base:text-[1.125rem] text-sm text-white;
 }
 
 /* animations */
@@ -590,13 +607,10 @@ Image {
 }
 
 @keyframes dropdownCloseAnimation {
-  0% {
-    top: 2.5rem;
-    opacity: 1;
-  }
-  100% {
+  to {
     top: 1rem;
     opacity: 0;
+    height: 0;
   }
 }
 
@@ -716,14 +730,9 @@ Image {
   :root{
     --svg-width: 81rem; /* 1360px / 16 */
     }
-
-    body {
-      background-color: yellow;
-    }
-
 }
 
-@media only screen and (min-width: 860px) and (max-width: 960px) {
+@media only screen and (min-width: 850px) and (max-width: 960px) {
   html {
     font-size: 10px;
   }
@@ -731,25 +740,41 @@ Image {
   :root{
     --svg-width: 80rem;
     }
-
-    body {
-      background-color: red;
-    }
 }
 
-@media only screen and (min-width: 700px) and (max-width: 860px) {
+@media only screen and (min-width: 760px) and (max-width: 850px) {
   html {
     font-size: 9px;
   }
 }
 
-/* @media only screen and (min-width: 540px) and (max-width: 700px) {
-  html {
-    font-size: 7px;
+  @media only screen and (min-width: 670px) and (max-width: 760px) {
+    html {
+      font-size: 8px;
+    }
+  
+    :root{
+      --svg-width: 80rem;
+      }
   }
-} */
 
-@media (max-width: 390px) {
+  @media only screen and (min-width: 600px) and (max-width: 670px) {
+    html {
+      font-size: 7.8px;
+    }
+  
+    :root{
+      --svg-width: 75rem;
+      }
+  }
+
+
+@media (max-width: 599px) {
+
+  .scroll-snap {
+      scroll-padding-inline: 1rem;
+    }
+
   :root {
     /* width and height for line animation svg */
     --svg-width: 23.5rem; /* 368px / 16 */
@@ -757,6 +782,19 @@ Image {
 
     --space: 2rem;
   }
+}
 
+@media (max-width: 350px) {
 
+  html {
+    font-size: 14px;
+  }
+
+  :root {
+    /* width and height for line animation svg */
+    --svg-width: 23.5rem; /* 368px / 16 */
+    --svg-height: 34.375rem; /* 550px / 16 */
+
+    --space: 2rem;
+  }
 }

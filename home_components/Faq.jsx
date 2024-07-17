@@ -15,8 +15,10 @@ export const Faq = () => {
   useEffect(() => {
     if (question == "merchant") {
         setFaqs(merchantFaqs)
+        setIsAnswerOpen({ 0: true })
     } else {
         setFaqs(tradeFaqs)
+        setIsAnswerOpen({ 0: true })
     }
   }, [question])
 
@@ -38,18 +40,12 @@ export const Faq = () => {
   }, [isAnswerOpen]);
 
   return (
-    <section className="relative px-[18.31rem] mt-[12.5rem] flex flex-col items-center">
-      <Image
-        src="/assets/svgs/testimonial-bg.svg"
-        alt="bg gradient"
-        width={1440}
-        height={1200}
-        className="absolute top-0 -z-[1] -rotate-180"
-      />
+    <section className=" relative base:mt-[12.5rem] flex flex-col items-center base:top-0 -top-[14.75rem]">
+    
       <h2>Frequently Asked Questions</h2>
 
       {/* trade or merchant toggle */}
-      <div className="text-[1.5rem] w-fit flex-center mt-6 font-[Coolvetica]">
+      <div className="base:text-[1.5rem] text-md w-fit flex-center mt-6 font-[Coolvetica]">
         <div
           onClick={() => setQuestion("trade")}
           className={`${
@@ -83,11 +79,11 @@ export const Faq = () => {
       </div>
 
       {/* question and answer */}
-      <div className=" mt-20 h-fit ">
+      <div className=" mt-20 h-fit base:px-[18.31rem] px-4">
         {faqs.map((faq, index) => (
           <div key={index} className="">
             <article
-            className={` py-10 px-12 flex items-start gap-6 border ${
+            className={` base:py-10 py-8 px-12 flex items-start gap-6 border ${
               isAnswerOpen[index] ? "border-purple_900 rounded-[1.25rem]" : "border-transparent"
             } cursor-pointer transition-all 500ms`}
             onClick={() => {handleToggleAnswer(index)}}>
@@ -112,7 +108,7 @@ export const Faq = () => {
 
             {/* question and answer */}
             <div>
-              <h3 className="text-xl">{faq.question}</h3>
+              <h3 className="base:text-xl text-base">{faq.question}</h3>
               <div
                 className="overflow-hidden transition-height duration-500"
                 style={{
@@ -124,7 +120,7 @@ export const Faq = () => {
                   ref={(el) => (paragraphRefs.current[index] = el)}
                   className={` ${
                     isAnswerOpen[index] ? "top-0 opacity-100" : "-top-[2rem] opacity-0"
-                  } relative transition-all 500ms mt-4 text-lg leading-[2.0225rem] text-black_50`}>
+                  } relative transition-all 500ms mt-4 base:text-lg text-base base:leading-[2.0225rem] text-black_50`}>
                   {faq.answer}
                 </p>
               </div>
@@ -139,6 +135,17 @@ export const Faq = () => {
           <Button text="View more FAQs" variant="btn-secondary" />
         </div>
         </div>
+
+        <div className="w-full h-fit">
+      <Image
+        src="/assets/svgs/testimonial-bg.svg"
+        alt="bg gradient"
+        width={1440}
+        height={600}
+        className="absolute base:-mt-[70rem] -mt-[16rem]  w-full -z-[1] -rotate-180"
+      />
+      </div>
+    
     </section>
   );
 };

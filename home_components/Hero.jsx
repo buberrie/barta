@@ -24,7 +24,7 @@ export const Hero = () => {
           currencies.</span>
         </p>
       </div>
-      <div className=" -z-[1] relative top-[7.5rem] w-full base:h-[64rem] h-[22.3rem] " >
+      <div className=" -z-[1] relative md:top-[8.25rem] top-[7.5rem] w-full base:h-[64rem] h-[22.3rem] " >
       <Image
         src="/assets/images/hero-animation.gif"
         alt="hero"

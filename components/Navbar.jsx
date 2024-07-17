@@ -41,7 +41,7 @@ export const Navbar = ({ variant }) => {
           className="w-[1.5rem] h-[1.5rem] ml-6 base:hidden block"
         />
         <div className="ml-10 base:block hidden">
-          {user ? (
+          {!user ? (
             <ul
               className={`flex base:justify-center base:items-center items-start  gap-6 base:flex-row flex-col ${
                 isOpen ? "" : ""
@@ -198,7 +198,7 @@ export const Navbar = ({ variant }) => {
         {/* auth buttons */}
         <div className="flex-center gap-6">
           <div className="base:block hidden">
-            {user ? (
+            {!user ? (
               <ul className="flex-center gap-6">
                 <li>
                   <Button

@@ -14,7 +14,7 @@ export function AuthProvider({ children }) {
       const user = await new Promise((resolve) =>
         setTimeout(() => resolve({ name: 'John Doe' }), 1000)
       );
-      setUser(user);
+      setUser(null);
       setLoading(false);
     };
 

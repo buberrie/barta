@@ -2,6 +2,7 @@
 "use client";
 
 import { getStarted } from "@/constant";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
 export const GetStarted = () => {
@@ -9,10 +10,10 @@ export const GetStarted = () => {
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isInView, setIsInView] = useState(false);
-  const [imgUrl, setImgUrl] = useState("./assets/images/process-1.png");
+  const [imgUrl, setImgUrl] = useState("/assets/images/process-1.png");
   const [animation, setAnimation] = useState("");
 
-  const radius = 17; 
+  const radius = 16;
   const circumference = 2 * Math.PI * radius;
 
   const sectionRef = useRef(null);
@@ -23,7 +24,7 @@ export const GetStarted = () => {
       ([entry]) => {
         setIsInView(entry.isIntersecting);
       },
-      { threshold: 0.1 } // Adjust this value as needed
+      { threshold: 0.5 }
     );
 
     if (sectionRef.current) {
@@ -38,7 +39,6 @@ export const GetStarted = () => {
   }, []);
 
   useEffect(() => {
-
     if (!isInView) return;
 
     const updateProgress = () => {
@@ -58,20 +58,19 @@ export const GetStarted = () => {
     const interval = setInterval(updateProgress, 100);
 
     // scroll current li item into view
-    const currentItem = ulRef.current.querySelectorAll('li')[currentTaskIndex];
+    const currentItem = ulRef.current.querySelectorAll("li")[currentTaskIndex];
     if (currentItem) {
-      currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      currentItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
     return () => clearInterval(interval);
-    
   }, [currentTaskIndex, isInView, setCurrentTaskIndex]);
 
   const offset = circumference - (progress / 100) * circumference;
 
   const handleItemClick = (index) => {
-    setCurrentTaskIndex(index)
-    setProgress(0)
+    setCurrentTaskIndex(index);
+    setProgress(0);
   };
 
   useEffect(() => {
@@ -82,16 +81,18 @@ export const GetStarted = () => {
     setTimeout(() => {
       setAnimation("fadeIn 0.5s forwards");
     }, 250);
-
   }, [currentTaskIndex]);
 
   return (
-    <section ref={sectionRef} className="relative padding-x mt-[11.5rem] pb-[9.375rem] border-b-[0.1rem] border-black_400 border-dashed">
+    <section
+      ref={sectionRef}
+      className=" padding-x base:mt-[11.5rem] mt-[6rem] base:pb-[9.375rem] pb-[5.75rem] border-b-[0.1rem] border-black_400 border-dashed">
+      <article className="relative">
       <div className="base:w-[34%] w-full">
         <h2>How to Get Started</h2>
         {/* buy or sell */}
         <div className="flex-start">
-          <div className="base:text-[1.5rem] text-lg w-fit flex-center mt-6 font-[Coolvetica]">
+          <div className="base:text-[1.5rem] text-md w-fit flex-center mt-6 font-[Coolvetica]">
             <div
               onClick={() => setTransaction("buy")}
               className={`${
@@ -126,61 +127,109 @@ export const GetStarted = () => {
         </div>
       </div>
 
-      <div className=" flex base:flex-row flex-col justify-between">
+      <div className=" flex base:flex-row flex-col-reverse justify-between">
         {/* details */}
-        <div className="mt-14 leading-[2rem] text-black_200 text-lg">
+        <div className="mt-14 base:leading-[2rem] leading-[1.618rem] text-black_200 base:text-lg text-base md:w-[31%] base:w-[37%] w-full">
           <p className="">
             With Barta, you can begin trading in less than 10 minutes with these
             simple steps:
           </p>
-          <ul ref={ulRef} className="overflow-auto overflow-container h-[15rem] pb-4 space-y-4 mt-6 transition-all">
+
+          {/* list items */}
+          <ul
+            ref={ulRef}
+            className="overflow-auto overflow-container base:h-[15rem] h-[16.5rem] py-5 space-y-4 mt-4 transition-all scroll-blur_s">
             {getStarted.map((item, index) => (
-              <li key={item.id} className="flex gap-4" onClick={() => {handleItemClick(index)}}>
+              <li
+                key={item.id}
+                className="flex gap-4"
+                onClick={() => {
+                  handleItemClick(index);
+                }}>
+
+                  {/* svg timer/ progress bar */}
                 <div className="flex-center relative top-1 w-[2.8rem] h-[2.8rem] p-[0.2rem] rounded-full">
-                <svg
-                  width="38px"
-                  height="38px"
-                  viewBox="0 0 38 38"
-                >
-                  <circle
-                    stroke="white"
-                    strokeWidth="3"
-                    fill="transparent"
-                    r={radius}
-                    cx="19"
-                    cy="19"
-                    style={{
-                      strokeDasharray: circumference,
-                      strokeDashoffset:
-                        index < currentTaskIndex ? 0 :
-                        index === currentTaskIndex ? offset : circumference,
-                      transform: 'rotate(-90deg)',
-                      transformOrigin: '50% 50%',
-                      transition: 'stroke-dashoffset 0.05s linear', // Smooth transition
-                    
-                    }}
-                  />
-                </svg>
-                  <span className="progress-text absolute text-white text-[0.75rem]">{item.id}</span>
+                  {/* progess bar */}
+                  <svg width="2.375rem" height="2.375rem" viewBox="0 0 38 38">
+                    <circle
+                      stroke="white"
+                      strokeWidth="0.16rem"
+                      fill="transparent"
+                      r={radius}
+                      cx="19"
+                      cy="19"
+                      style={{
+                        strokeDasharray: circumference,
+                        strokeDashoffset:
+                          index < currentTaskIndex
+                            ? 0
+                            : index === currentTaskIndex
+                            ? offset
+                            : circumference,
+                        transform: "rotate(-90deg)",
+                        transformOrigin: "50% 50%",
+                        transition: "stroke-dashoffset 0.05s linear", // Smooth transition
+                      }}
+                    />
+                  </svg>
+                  {/* number */}
+                  <span className={`${
+                    index < currentTaskIndex || index === currentTaskIndex
+                      ? "text-white"
+                      : index === currentTaskIndex
+                      ? "text-black_200"
+                      : ""
+                  } progress-text absolute text-[0.75rem]`}>
+                    {item.id}
+                  </span>
                 </div>
-                      <p className={`${(index < currentTaskIndex || index === currentTaskIndex) ? "text-white" :
-                        index === currentTaskIndex ? "text-black_200" : ""} cursor-pointer`}>{item.text}</p>
+
+                  {/* stage detail */}
+                <p
+                  className={`${
+                    index < currentTaskIndex || index === currentTaskIndex
+                      ? "text-white"
+                      : index === currentTaskIndex
+                      ? "text-black_200"
+                      : ""
+                  } cursor-pointer`}>
+                  {item.text}
+                </p>
               </li>
             ))}
           </ul>
         </div>
 
         {/* images */}
-        <div className="absolute top-0 right-0 w-[52%] h-[27.5rem] linear-bg p-4">
-        <div className="overflow-hidden flex-center flex-col rounded-[0.625rem] w-full h-full bg-black_100" 
-        style={{boxShadow: "0px 0px 0.597px 0px rgba(0, 0, 0, 0.70), 0px 11.939px 17.908px 0px rgba(0, 0, 0, 0.30), 0px 5.969px 29.847px 0px rgba(0, 0, 0, 0.20)"}}>
-        <img src="/assets/svgs/browser.svg" alt="browser" className="w-full rounded-t-[0.625rem]"/>
-        <div className="bg-transparent relative text-white w-full rounded-b-[0.625rem] img-container" style={{ animation }}>
-          <img src={imgUrl} alt="process image" className=" w-[99.99%] h-full object-cover rounded-b-[0.625rem]"/>
-        </div>
+        <div className="base:absolute relative top-0 right-0 base:w-[55%] w-full md:h-[28rem] linear-bg base:p-4 p-3 base:mt-0 mt-14">
+          <div
+            className="overflow-hidden flex-center flex-col base:rounded-[0.625rem] rounded-[0.35rem] w-full h-full bg-black_100"
+            style={{
+              boxShadow:
+                "0px 0px 0.597px 0px rgba(0, 0, 0, 0.70), 0px 11.939px 17.908px 0px rgba(74, 42, 42, 0.3), 0px 5.969px 29.847px 0px rgba(0, 0, 0, 0.20)",
+            }}>
+            <div className="w-full base:h-[1.8rem] base:rounded-t-[0.625rem] rounded-t-[0.35rem] bg-black">
+            <img
+              src="/assets/svgs/browser.svg"
+              alt="browser"
+              className="w-full h-full base:rounded-t-[0.625rem] rounded-t-[0.35rem] object-contain"
+            />
+            </div>
+            <div
+              className="bg-transparent relative text-white w-full base:rounded-b-[0.625rem] rounded-b-[0.35rem] img-container"
+              style={{ animation }}>
+              <Image
+                src={imgUrl}
+                alt="process image"
+                width={1000}
+                height={1000}
+                className=" w-[99.99%] h-full object-cotain base:rounded-b-[0.625rem] rounded-b-[0.35rem]"
+              />
+            </div>
+          </div>
         </div>
       </div>
-      </div>
+      </article>
     </section>
   );
 };

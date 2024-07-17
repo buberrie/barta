@@ -3,16 +3,19 @@ import Image from "next/image";
 
 export const BuiltFor = () => {
   return (
-    <section className="mt-[9.375rem] px-[16rem] relative ">
-      <h2 className="ml-[4.5rem] w-[60%] relative mb-[2rem]">
+    <section className=" base:overflow-visible overflow-hidden base:mt-[9.375rem] mt-[5.75rem] md:px-[16rem] base:px-[10rem] px-10 relative ">
+      {/* heading */}
+      <h2 className="base:ml-[4.5rem] base:w-[60%] w-full relative mb-[2rem]">
         Built for freelancers who exchange currencies the intelligent way.
       </h2>
-      <div className="ml-[4.5rem] w-fit flex items-center gap-2 get-started-btn">
+
+      {/* action button */}
+      <div className="base:ml-[4.5rem] w-fit flex items-center gap-2 get-started-btn">
         <Button
           type="button"
           text="Get Started"
           variant="btn-tertiary"
-          textColor="color-white"
+          textColor="text-black_50"
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -26,38 +29,46 @@ export const BuiltFor = () => {
           />
         </svg>
       </div>
-      <div className=" mt-[6.31rem] grid grid-rows-2 grid-cols-3 gap-6">
+
+      {/* main content  */}
+      <div className=" mt-[6.31rem] base:grid grid-rows-2 grid-cols-3 flex flex-col base:gap-6 gap-4 base:w-full w-[95%]">
+        {/* best offer */}
         <div className="grid-card row-span-2 relative ">
           <span>BEST OFFERS</span>
-          <div className="w-full absolute top-[16rem] -left-[5rem] flex-center">
-            <Image src="./assets/svgs/holographic.svg" alt="holographic" width={500} height={500} className="absolute w-[14.0625rem]" />
-            <Image src="./assets/svgs/bg-glow.svg" alt="background glow" width={200} height={200} className="absolute w-[8.625rem]" />
+          <div className="w-full base:absolute relative base:top-[16rem] top-2 base:-left-[5rem] -left-[7rem] -mb-2 flex-center">
+            <Image src="./assets/svgs/holographic.svg" alt="holographic" width={500} height={500} className="base:absolute base:w-[14.0625rem] w-[8.8125rem] " />
+            <Image src="./assets/svgs/bg-glow.svg" alt="background glow" width={500} height={500} className="absolute base:w-[8.625rem] w-[16rem]" />
           </div>
           <h3>
             Find trustworthy dealers to exchange your funds for the best prices.
           </h3>
         </div>
-        <div className="grid-card col-span-2 relative">
+        {/* payment solution */}
+        <div className="grid-card col-span-2 relative base:h-fit h-[23.125rem]">
           <span>payment solutions</span>
-          <Image src="/assets/images/Images.png" alt="images" width={1000} height={1000} className=" w-[42rem] h-[42rem] absolute -top-[15rem] -right-[15rem]" />
-          <h3 className="md:w-[40%] w-full">Variety of payment methods</h3>
+          <Image src="/assets/images/Images.png" alt="images" width={500} height={500} className=" base:w-[35rem] base:h-[40.5rem] w-full h-[24rem] absolute base:-top-[13.5rem] top-0 base:-right-[6.5rem] -right-[4.5rem] " />
+          <h3 className="md:w-[40%] w-[50%]">Variety of payment methods</h3>
         </div>
+        {/* ai matching */}
         <div className="grid-card">
           <span>AI MATCHING</span>
-          <h3>Match your offers to merchants with AI</h3>
+          <h3 className="base:w-full w-[55%]">Match your offers to merchants with AI</h3>
         </div>
+        {/* local & foreign */}
         <div className="grid-card">
           <span>LOCAL & FOREIGN</span>
-          <h3>Exchange down to your local currency</h3>
+          <h3 className="base:w-full w-[50%]">Exchange down to your local currency</h3>
         </div>
       </div>
+
       <Image
         src="./assets/svgs/gradient-shape-0.svg"
         alt="gradient-shape"
         width={1000}
         height={1000}
-        className="absolute w-[35rem] h-[55rem] right-[1rem] top-[27.5rem] -z-[1]"
+        className="base:absolute relative base:w-[35rem] w-full base:h-[55rem] base:right-[1rem] -right-[5rem] base:top-[27.5rem] -top-[18rem] -z-[1]"
       />
+
     </section>
   );
 };

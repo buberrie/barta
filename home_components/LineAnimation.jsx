@@ -4,7 +4,7 @@ import React from "react";
 
 export const LineAnimation = () => {
   return (
-    <section className=" overflow-hidden padding-x flex-center flex-col relative base:mt-[22rem] mt-[48rem] pt-4 ">
+    <section className=" overflow-hidden padding-x flex-center flex-col relative base:mt-[22rem] mt-[44rem] pt-4 ">
       {/* line animation */}
       <div className="relative">
         {/* desktop animated svg */}

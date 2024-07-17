@@ -207,17 +207,20 @@ Image {
   @apply text-white;
   background: rgba(51, 51, 51, 0.3);
   backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
 }
 
 .nav-dashboard {
   @apply text-black;
   background: rgba(51, 51, 51, 0.3);
   backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
 }
 
 .bg-blur {
   background: rgba(51, 51, 51, 0.3);
   backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
 }
 
 .qr-code,
@@ -402,7 +405,7 @@ Image {
 
 /* testimonial */
 .dashed-border {
-  @apply base:px-6 px-3.5 border-[0.1rem] border-black_400 border-dashed rounded-[16px];
+  @apply base:px-6 px-3.5 base:border-[0.1rem] border-[0.075rem] border-black_400 border-dashed rounded-[16px];
 }
 
 /* creates a snap effect as you scroll */
@@ -792,9 +795,7 @@ Image {
 
   :root {
     /* width and height for line animation svg */
-    --svg-width: 23.5rem; /* 368px / 16 */
-    --svg-height: 34.375rem; /* 550px / 16 */
+    --svg-width: 22.5rem; /* 368px / 16 */
 
-    --space: 2rem;
   }
 }

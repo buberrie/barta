@@ -316,7 +316,7 @@ export const Navbar = ({ variant }) => {
             : "opacity-0 pointer-events-none -translate-x-96"
         }`}>
           <div className="absolute top-6 right-6 text-lg border-[0.15rem] border-purple_900 rounded-full h-8 w-8 flex justify-center items-center"><span className="relative -top-[0.1rem]">x</span></div>
-        {user ? (
+        {!user ? (
           <ul
             className="flex items-start mt-12 gap-8 flex-col">
             <li>
@@ -421,7 +421,7 @@ export const Navbar = ({ variant }) => {
             </ul>
           </ul>
         ) : (
-          <ul className="flex-center gap-6">
+          <ul className="flex items-start mt-12 gap-8 flex-col">
             <li>
               <Button
                 type="button"

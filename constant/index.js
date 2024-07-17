@@ -79,7 +79,7 @@ export const currencyCrypto = [
   {
     id: "eth",
     value: [
-      <Image key={2} src="./assets/svgs/ethereum-icon.svg" alt="usdt" width={21} height={20} className="w-[1.5rem] base:h-[1.5rem] -ml-2"/>,
+      <Image key={2} src="./assets/svgs/Ethereum-icon.svg" alt="usdt" width={21} height={20} className="w-[1.5rem] base:h-[1.5rem] -ml-2"/>,
     "Ethereum"],
     name: "Ethereum",
     min: 0.01

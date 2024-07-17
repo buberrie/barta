@@ -51,7 +51,7 @@ export const TradeCard = () => {
       newErrors.currencyTo = "Please select a currency.";
       }
 
-      if(formValues.currencyFrom == formValues.currencyTo) {
+      if(formValues.currencyTo && formValues.currencyFrom == formValues.currencyTo) {
       newErrors.currencys = ` Can not exchange ${formValues.currencyFrom.value} for ${formValues.currencyTo.value}`;
       }
 

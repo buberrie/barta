@@ -38,6 +38,7 @@ export const Testimonials = () => {
         className="absolute top-0 -z-[1]"
       />
       </div>
+
       <h2 className="text-[1.765rem] leading-[2.856rem] base:text-[3.125rem] base:leading-[5.05625rem] base:mt-[9.5rem] mt-[6.25rem] base:w-[60%] w-[75%] text-center">
         Over 2000 freelancers and merchants have traded with Barta
       </h2>
@@ -46,14 +47,14 @@ export const Testimonials = () => {
       <Image
         src="/assets/images/Gradient-shape.png"
         alt="glow background"
-        width={700}
-        height={700}
-        className="absolute base:ml-[15rem] base:top-24 top-16 -z-[1] base:w-[30rem] w-full"
+        width={1000}
+        height={1000}
+        className="absolute base:ml-[6rem] base:top-[10rem] top-[9.5rem] base:mr-0 mr-[2.5rem] -z-[1] base:w-[40rem] w-full"
       />
 
       {/* testimonials / content cards */}
       <div
-        className="w-full overflow-x-scroll overflow-container mt-20 scroll-snap"
+        className="w-full overflow-x-scroll overflow-container base:mt-20 mt-16 scroll-snap"
         ref={scrollContainerRef}>
         <div className="flex items-start base:gap-6 gap-4 w-fit relative h-fit base:px-6 px-4 scroll-snap">
           {testimonials.map((testimonial) => (

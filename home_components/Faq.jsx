@@ -59,7 +59,7 @@ export const Faq = () => {
             question == "trade"
               ? "text-white"
               : "text-black_300 hover:text-white"
-          } pr-6 base:border-r border-r-[0.075rem] border-dashed border-black_400`}>
+          } pr-6 border-r border-dashed border-black_400`}>
           <div className=" flex items-center flex-col relative cursor-pointer">
             <span className="mb-2">Trading related</span>{" "}
             <div

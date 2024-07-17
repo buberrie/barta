@@ -90,7 +90,7 @@ export const Faq = () => {
         {itemsToDisplay.map((faq, index) => (
           <div key={index} className="">
             <article
-            className={` base:py-10 py-8 px-12 flex items-start gap-6 border ${
+            className={` base:py-10 py-8 base:px-12 px-8 flex items-start gap-6 border ${
               isAnswerOpen[index] ? "border-purple_900 base:rounded-[1.25rem] rounded-[1rem]" : "border-transparent"
             } cursor-pointer transition-all 500ms`}
             onClick={() => {handleToggleAnswer(index)}}>

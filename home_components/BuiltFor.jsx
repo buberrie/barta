@@ -61,9 +61,9 @@ export const BuiltFor = () => {
         </div>
       </div>
 
-      <div className="base:absolute relative base:w-[35rem] w-full base:h-[55rem] base:right-[1rem] -right-[5rem] base:top-[27.5rem] -top-[18rem] -z-[1]">
+      <div className="h-[32rem] max-h-fit base:absolute relative base:w-[35rem] w-full base:h-[55rem] base:right-[1rem] -right-[5rem] base:top-[27.5rem] -top-[18rem] -z-[1]">
       <Image
-        src="./assets/svgs/gradient-shape-0.svg"
+        src="/assets/images/Gradient-shape-04.png"
         alt="gradient-shape"
         width={1000}
         height={1000}

@@ -5,7 +5,7 @@ import Button from "./Button";
 import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const Navbar = ({ variant }) => {
   const { user } = useContext(AuthContext);
@@ -22,13 +22,20 @@ export const Navbar = ({ variant }) => {
     }
   };
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const src =
     variant === "nav-general"
       ? "./assets/svgs/Logo-1.svg"
       : "./assets/svgs/Logo-2.svg";
 
   return (
-    <section className="sticky base:top-4 top-6 z-[10] ">
+    <section className="sticky base:top-4 top-6 z-[10] " >
       <nav
         className={`bg-blur base:top-4 base:mt-4 top-6 mt-6 base:mx-[3rem] mx-4 border-[0.5px] border-black_300 rounded-[7rem] flex justify-between items-center ${variant}`}>
         {/* aux buttons */}
@@ -309,6 +316,7 @@ export const Navbar = ({ variant }) => {
 
       {/* mobile nav items */}
       <nav
+      ref={menuRef}
       onClick={toggleNavItems}
         className={` base:hidden absolute -top-6 left-0 w-[65%] h-screen z-[20] p-6 pt-10 bg-blur transition-all duration-500 ${
           isOpen

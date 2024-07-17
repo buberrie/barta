@@ -9,17 +9,18 @@ export const Faq = () => {
   const [question, setQuestion] = useState("trade");
   const [faqs, setFaqs] = useState(tradeFaqs)
   const [isAnswerOpen, setIsAnswerOpen] = useState({ 0: true });
+  const [showAll, setShowAll] = useState(false);
   const [paragraphHeights, setParagraphHeights] = useState({});
   const paragraphRefs = useRef({});
 
   useEffect(() => {
-    if (question == "merchant") {
-        setFaqs(merchantFaqs)
-        setIsAnswerOpen({ 0: true })
+    if (question === "merchant") {
+      setFaqs(merchantFaqs);
     } else {
-        setFaqs(tradeFaqs)
-        setIsAnswerOpen({ 0: true })
+      setFaqs(tradeFaqs);
     }
+    setIsAnswerOpen({ 0: true });
+    setShowAll(false);  // Reset showAll when question changes
   }, [question])
 
   const handleToggleAnswer = (index) => {
@@ -39,6 +40,12 @@ export const Faq = () => {
     setParagraphHeights(heights);
   }, [isAnswerOpen]);
 
+  const handleViewMore = () => {
+    setShowAll(!showAll);
+  };
+
+  const itemsToDisplay = showAll ? faqs : faqs.slice(0, 6);
+
   return (
     <section className=" relative base:mt-[12.5rem] flex flex-col items-center base:top-0 -top-[14.75rem]">
     
@@ -52,7 +59,7 @@ export const Faq = () => {
             question == "trade"
               ? "text-white"
               : "text-black_300 hover:text-white"
-          } pr-6 border-r border-dashed border-black_400`}>
+          } pr-6 base:border-r border-r-[0.075rem] border-dashed border-black_400`}>
           <div className=" flex items-center flex-col relative cursor-pointer">
             <span className="mb-2">Trading related</span>{" "}
             <div
@@ -80,11 +87,11 @@ export const Faq = () => {
 
       {/* question and answer */}
       <div className=" mt-20 h-fit base:px-[18.31rem] px-4">
-        {faqs.map((faq, index) => (
+        {itemsToDisplay.map((faq, index) => (
           <div key={index} className="">
             <article
             className={` base:py-10 py-8 px-12 flex items-start gap-6 border ${
-              isAnswerOpen[index] ? "border-purple_900 rounded-[1.25rem]" : "border-transparent"
+              isAnswerOpen[index] ? "border-purple_900 base:rounded-[1.25rem] rounded-[1rem]" : "border-transparent"
             } cursor-pointer transition-all 500ms`}
             onClick={() => {handleToggleAnswer(index)}}>
             <div className="relative top-[0.125rem] w-[1.9rem] h-[1.9rem] flex-shrink-0 ">
@@ -126,13 +133,13 @@ export const Faq = () => {
               </div>
             </div>
           </article>
-          <div className={`${index === faqs.length - 1 ? "" : "border-t-[0.1rem] border-dashed border-black_400"}`}></div>
+          <div className={`${index === faqs.length - 1 ? "" : "base:border-t-[0.1rem] border-t-[0.095rem] border-dashed border-black_400"}`}></div>
           </div>
         ))}
 
          {/* view more button */}
-         <div className="w-fit ml-12 mt-12">
-          <Button text="View more FAQs" variant="btn-secondary" />
+         <div className="w-fit ml-12 mt-12" onClick={handleViewMore}>
+          <Button text={ showAll ? "Show less FAQs" : "View more FAQs"}  variant="btn-secondary" />
         </div>
         </div>
 

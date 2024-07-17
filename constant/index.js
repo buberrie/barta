@@ -392,8 +392,8 @@ export const tradeFaqs = [
   },
   {
     id: 3,
-    question: "How do I buy Crypto with fiat on Barta?",
-    answer: "After you sign up, complete your identity verification and add your preferred payment method, you are ready to buy crypto on Barta. First, choose from all the available offers in the marketplace. Second, place an order to buy your crypto, and pay the seller based on the preferred payment methods. Lastly, get your crypto from the seller after you complete the fiat transaction and confirm your payment.",
+    question: "How do I sell Crypto with fiat on Barta?",
+    answer: "To start, click Find Offers for the cryptocurrency you want to sell and find the best deals with your preferred method of payment. You can examine the buyer requirements and read the reviews. Start the trade if they're on board, but don't release the cryptocurrency until you've been paid using the payment method you specified. Find out more about peer-to-peer crypto sales.",
   },
   {
     id: 4,
@@ -409,6 +409,16 @@ export const tradeFaqs = [
     id: 6,
     question: "How do I protect myself against fraud?",
     answer: "We have a holding mechanism for cryptocurrency funds that are involved in any pending transaction as one of the many safeguards on Barta. By adding an additional layer of trust, this mechanism guards against theft and scams and stops dishonest people from taking your money or cryptocurrency without finishing their end of the bargain.",
+  },
+  {
+    id: 7,
+    question: "Can I cancel a trade on Barta after placing an order?",
+    answer: "Once you have placed an order on Barta, it cannot be canceled. Ensure all trade details are accurate before confirming your order to avoid any inconvenience.",
+  },
+  {
+    id: 8,
+    question: "What security measures does Barta employ to protect my funds?",
+    answer: "Barta employs industry-standard security measures, including encryption protocols, two-factor authentication (2FA), and regular security audits. Your funds are stored in secure cold wallets to mitigate risks associated with online threats.",
   },
 ]
 
@@ -442,6 +452,16 @@ export const merchantFaqs = [
     id: 6,
     question: "How do I set competitive prices for my offers?",
     answer: "To set competitive prices, regularly monitor the market rates for the cryptocurrencies you are trading. Consider using dynamic pricing tools that adjust your offers based on market fluctuations. Additionally, review the prices set by other merchants on Barta to ensure your rates are attractive to potential buyers and sellers.",
+  },
+  {
+    id: 7,
+    question: "Can I customize my trade offers on Barta?",
+    answer: "Yes, as a merchant, you can create custom trade offers tailored to your preferences. From your merchant dashboard, select the cryptocurrency you wish to trade, set specific terms including price, payment methods, and trade limits, and publish your offer to the marketplace.",
+  },
+  {
+    id: 8,
+    question: "How do I manage my offers as a merchant?",
+    answer: "To manage your offers, log in to your merchant dashboard on Barta. From there, you can view, edit, or delete your existing offers. Make sure to update prices and availability regularly to attract potential buyers.",
   },
 ];
 

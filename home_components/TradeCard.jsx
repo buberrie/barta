@@ -10,7 +10,7 @@ import {
 
 } from "@/constant";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const TradeCard = () => {
   const [formValues, setFormValues] = useState(
@@ -127,6 +127,13 @@ export const TradeCard = () => {
       }));
     }
   };
+
+  // immediately update wallet on icon click
+  useEffect(() => {
+    if (formValues.wallet) {
+      handleFieldChange("wallet", { value: formValues.wallet.value })
+    }
+  }, [formValues.wallet])
 
     // Function to scroll to the field with an error
     const scrollToErrorField = (field) => {
@@ -383,7 +390,7 @@ export const TradeCard = () => {
                 transaction == "buy"
                   ? "text-white"
                   : "text-black_300 hover:text-white"
-              } pr-6 border-r border-dashed border-black_400`}>
+              } pr-6 base:border-r border-r-[0.075rem] border-dashed border-black_400`}>
               <div className=" flex items-center flex-col relative cursor-pointer">
                 <span className="mb-2">Buy</span>{" "}
                 <div
@@ -481,7 +488,6 @@ export const TradeCard = () => {
               + 200 more
             </span>
           <p className={`absolute base:-top-[1.48rem] -top-[1.35rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${errors.wallet ? "opacity-100" : "opacity-0"}`}>{errors.wallet}</p>
-
           </div>
         </div>
 

@@ -405,7 +405,7 @@ Image {
 
 /* testimonial */
 .dashed-border {
-  @apply base:px-6 px-3.5 base:border-[0.1rem] border-[0.075rem] border-black_400 border-dashed rounded-[16px];
+  @apply base:px-6 px-3.5 base:border-[0.1rem] border-[0.08rem] border-black_400 border-dashed rounded-[16px];
 }
 
 /* creates a snap effect as you scroll */

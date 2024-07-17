@@ -91,24 +91,33 @@ export const TradeCard = () => {
     return null;
   };
 
+  const clearAllFields = () => {
+    setFormValues((prevValues) => ({
+      wallet: "",
+      amount: "",
+      currencyFrom: "",
+      currencyTo: "",
+      conversionChannel: currencyCrypto[0],
+      currencyCrypto: currencyCrypto[0],
+      tradeType: prevValues.tradeType,
+    }));
+
+    // clear errors as well
+    setErrors({});
+  }
+
+  // reset inputs on trade type toggle
+  useEffect(() => {
+    clearAllFields()
+  }, [formValues.tradeType])
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const firstErrorField = validateForm();
     if (firstErrorField) {
       scrollToErrorField(firstErrorField);
     } else {
-      setFormValues((prevValues) => ({
-        wallet: "",
-        amount: "",
-        currencyFrom: "",
-        currencyTo: "",
-        conversionChannel: currencyCrypto[0],
-        currencyCrypto: currencyCrypto[0],
-        tradeType: prevValues.tradeType,
-      }));
-
-      // clear errors as well
-      setErrors({});
+      clearAllFields();
     }
 
   };

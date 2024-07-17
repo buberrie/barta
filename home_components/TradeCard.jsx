@@ -31,6 +31,7 @@ export const TradeCard = () => {
     amount: null,
     currencyFrom: null,
     currencyTo: null,
+    currencys: null,
     conversionChannel: null,
     cryptoCurrency: null,
   });
@@ -41,12 +42,24 @@ export const TradeCard = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (formValues.tradeType.id == "fiat" && !formValues.currencyFrom ) {
-      newErrors.currencyFrom = "Please select a currency.";
-    }
-    if (formValues.tradeType.id == "fiat" && !formValues.currencyTo ) {
+    if (formValues.tradeType.id == "fiat") {
+      if (!formValues.currencyFrom ) {
+        newErrors.currencyFrom = "Please select a currency.";
+      }
+      
+      if (!formValues.currencyTo ) {
       newErrors.currencyTo = "Please select a currency.";
+      }
+
+      if(formValues.currencyFrom == formValues.currencyTo) {
+      newErrors.currencys = ` Can not exchange ${formValues.currencyFrom.value} for ${formValues.currencyTo.value}`;
+      }
+
+      if (!formValues.conversionChannel) {
+        newErrors.conversionChannel = "Select conversion channel.";
+      }
     }
+    
     if (!formValues.amount) {
       newErrors.amount = "Enter amount to spend.";
     } else if (
@@ -60,12 +73,11 @@ export const TradeCard = () => {
     ) {
       newErrors.amount = `Amount must be at least ${formValues.cryptoCurrency.min} ${formValues.cryptoCurrency.id}.`;
     }
+
     if (!formValues.wallet) {
       newErrors.wallet = "Select payment method.";
     }
-    if (!formValues.conversionChannel && formValues.tradeType.id == "fiat") {
-      newErrors.conversionChannel = "Select conversion channel.";
-    }
+    
     if (!formValues.cryptoCurrency && formValues.tradeType.id == "crypto") {
       newErrors.cryptoCurrency = "Select payment methid.";
     }
@@ -128,13 +140,6 @@ export const TradeCard = () => {
     }
   };
 
-  // immediately update wallet on icon click
-  useEffect(() => {
-    if (formValues.wallet) {
-      handleFieldChange("wallet", { value: formValues.wallet.value })
-    }
-  }, [formValues.wallet])
-
     // Function to scroll to the field with an error
     const scrollToErrorField = (field) => {
       const ref = refs.current[field];
@@ -182,7 +187,7 @@ export const TradeCard = () => {
         } top-0 relative transition-opacity duration-500`}>
        
         {/* select currenies to convert from and to */}
-        <div className="flex-center gap-6 base:mt-16 mt-14">
+        <div ref={(el) => (refs.current.currencys = el)} className="flex-center gap-6 base:mt-16 mt-14"  >
           
           {/* currency from dropdown */}
           <Dropdown
@@ -250,6 +255,8 @@ export const TradeCard = () => {
             }
             ref={(el) => (refs.current.currencyTo = el)}
           />
+          {/* error message */}
+          <p className={`absolute base:top-[1.6rem] top-[1.5rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${errors.currencys ? "opacity-100" : "opacity-0"}`}>{errors.currencys}</p>
         </div>
 
         {/* Chose where to fund transaction from */}

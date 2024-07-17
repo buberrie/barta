@@ -45,6 +45,13 @@ export const Cta = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <section className=" padding-x font-[Coolvetica] base:pb-0 pb-16 base:border-0 border-b-[0.1rem] border-black_400 border-dashed ">
        {/* scan code section */}
@@ -152,7 +159,7 @@ export const Cta = () => {
 
       {/* back to the top button */}
       <div className="w-full flex justify-end">
-      <button className=" w-fit flex-center base:gap-4 gap-2 mt-16 back-to-top ">
+      <button className=" w-fit flex-center base:gap-4 gap-2 mt-16 back-to-top " onClick={scrollToTop}>
         <span className="base:text-[1.1rem] text-[0.85rem]">Back to the top</span>
         <span className=" rounded-full bg-purple_900 base:p-2 p-[0.3rem] btt-icon">
         <svg

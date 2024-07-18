@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import { Dropdown } from "@/components/Dropdown";
 import { trades, currencyCrypto, currencyFiat, wallets } from "@/constant";
 import Image from "next/image";
-import axios from 'axios';
+import axios from "axios";
 import { useState, useRef, useEffect } from "react";
 
 export const TradeCard = () => {
@@ -30,7 +30,11 @@ export const TradeCard = () => {
   });
 
   // state for the current price of the coins
-  const [exchangeRates, setExchangeRates] = useState({ usdt: null, btc: null, eth: null });
+  const [exchangeRates, setExchangeRates] = useState({
+    usdt: null,
+    btc: null,
+    eth: null,
+  });
 
   const [transaction, setTransaction] = useState("buy");
   const [errors, setErrors] = useState({});
@@ -39,21 +43,21 @@ export const TradeCard = () => {
   useEffect(() => {
     const fetchExchangeRates = async () => {
       try {
-        const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=tether,bitcoin,ethereum&vs_currencies=usd');
+        const response = await axios.get("/api/exchange-rates");
         setExchangeRates({
-          usdt: Math.round(response.data.tether.usd),
-          btc: Math.round(response.data.bitcoin.usd),
-          eth: Math.round(response.data.ethereum.usd)
+          usdt: Math.round(response.data.usdt),
+          btc: Math.round(response.data.btc),
+          eth: Math.round(response.data.eth),
         });
-        setLoading(false);
+        console.log(exchangeRates);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
 
     fetchExchangeRates();
-  }, [formValues.conversionChannel, formValues.cryptoCurrency ]);
- 
+  }, [formValues.conversionChannel, formValues.cryptoCurrency]);
+
   const validateForm = () => {
     const newErrors = {};
 
@@ -222,7 +226,6 @@ export const TradeCard = () => {
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         } top-0 relative transition-opacity duration-500`}>
-        
         {/* select currenies to convert from and to */}
         <div
           ref={(el) => (refs.current.currencys = el)}
@@ -430,7 +433,13 @@ export const TradeCard = () => {
             }
           />
           <span className=" relative base:-top-6 -top-5 text-black_200 text-[0.8rem] uppercase">
-            1 {formValues.conversionChannel.id} = {formValues.conversionChannel.id == "usdt" ? exchangeRates.usdt : (formValues.conversionChannel.id == "btc" ? exchangeRates.btc : exchangeRates.eth)} USD
+            1 {formValues.conversionChannel?.id} ={" "}
+            {formValues.conversionChannel?.id == "usdt"
+              ? exchangeRates.usdt
+              : formValues.conversionChannel?.id == "btc"
+              ? exchangeRates.btc
+              : exchangeRates.eth}{" "}
+            USD
           </span>
           <p
             className={`absolute base:top-[2.7rem] top-[2.35rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${
@@ -449,7 +458,6 @@ export const TradeCard = () => {
             : "opacity-0 pointer-events-none"
         } top-14 absolute transition-opacity duration-500`}
         style={{ width: "calc(100% - var(--space))" }}>
-        
         {/* buy or sell */}
         <div className="flex-center">
           <div className="base:text-[1.5rem] text-[1.125rem] w-fit flex-center base:mt-10 mt-6 font-[Coolvetica]">
@@ -512,9 +520,15 @@ export const TradeCard = () => {
               </div>
             }
           />
-          
+
           <span className=" relative base:-top-6 -top-5 text-black_200 text-[0.8rem] uppercase">
-            1 {formValues.conversionChannel.id} = {formValues.conversionChannel.id == "usdt" ? exchangeRates.usdt : (formValues.conversionChannel.id == "btc" ? exchangeRates.btc : exchangeRates.eth)} USD
+            1 {formValues.cryptoCurrency?.id} ={" "}
+            {formValues.cryptoCurrency?.id == "usdt"
+              ? exchangeRates.usdt
+              : formValues.cryptoCurrency?.id == "btc"
+              ? exchangeRates.btc
+              : exchangeRates.eth}{" "}
+            USD
           </span>
 
           <p

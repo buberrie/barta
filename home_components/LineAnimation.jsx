@@ -48,7 +48,7 @@ export const LineAnimation = () => {
             id="animated-line"
             d="M 5 10 L 348 10 L 348 525 L 5 525 Z"
             fill="none"
-            stroke="black"
+            stroke="#000000"
             strokeWidth="1rem"
             strokeDasharray="1488 300">
             <animate
@@ -101,6 +101,7 @@ export const LineAnimation = () => {
           />
         </svg>
 
+        {/* mobile main rectangle */}
         <svg
           style={{
             width: "calc(var(--svg-width) + 1.25rem)",

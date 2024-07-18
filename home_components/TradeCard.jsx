@@ -45,9 +45,9 @@ export const TradeCard = () => {
       try {
         const response = await axios.get("/api/exchange-rates");
         setExchangeRates({
-          usdt: Math.round(response.data.usdt),
-          btc: Math.round(response.data.btc),
-          eth: Math.round(response.data.eth),
+          usdt: formatNumber(response.data.usdt),
+          btc: formatNumber(response.data.btc),
+          eth: formatNumber(response.data.eth),
         });
         console.log(exchangeRates);
       } catch (error) {
@@ -57,6 +57,14 @@ export const TradeCard = () => {
 
     fetchExchangeRates();
   }, []);
+
+  function formatNumber(number) {
+    // Convert number to fixed 2 decimal places
+    const formattedNumber = number.toFixed(2);
+
+    // Use toLocaleString to add commas for thousands separator
+    return formattedNumber.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
   const validateForm = () => {
     const newErrors = {};

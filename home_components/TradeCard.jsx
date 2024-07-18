@@ -31,9 +31,9 @@ export const TradeCard = () => {
 
   // state for the current price of the coins
   const [exchangeRates, setExchangeRates] = useState({
-    usdt: null,
-    btc: null,
-    eth: null,
+    usdt: "--",
+    btc: "--",
+    eth: "--",
   });
 
   const [transaction, setTransaction] = useState("buy");
@@ -56,7 +56,7 @@ export const TradeCard = () => {
     };
 
     fetchExchangeRates();
-  }, [formValues.conversionChannel, formValues.cryptoCurrency]);
+  }, []);
 
   const validateForm = () => {
     const newErrors = {};

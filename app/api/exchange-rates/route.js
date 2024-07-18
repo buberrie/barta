@@ -3,7 +3,7 @@ import axios from 'axios';
 // Function to fetch latest cryptocurrency exchange rates
 export async function GET(request) {
   try {
-    const apiKey = '80a549ed-b789-422b-bf0b-eb7308a8f38b';
+    const apiKey = process.env.NEXT_COINMARKET_API_KEY;
     const url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
 
     // Parameters for the API request

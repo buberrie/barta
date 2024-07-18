@@ -49,7 +49,7 @@ export const TradeCard = () => {
           btc: formatNumber(response.data.btc),
           eth: formatNumber(response.data.eth),
         });
-        console.log(response.data);
+        console.log(exchangeRates);
       } catch (error) {
         console.log(error);
       }
@@ -59,17 +59,11 @@ export const TradeCard = () => {
   }, []);
 
   function formatNumber(number) {
-    /// Round to two decimal places
-    const roundedNumber = number.toFixed(2);
+    // Convert number to fixed 2 decimal places
+    const formattedNumber = number.toFixed(2);
 
-    // Split into integer and decimal parts
-    const [integerPart, decimalPart] = roundedNumber.split('.');
-
-    // Format integer part with commas
-    const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-    // Combine integer part and decimal part
-    return `${formattedInteger}.${decimalPart}`;
+    // Use toLocaleString to add commas for thousands separator
+    return formattedNumber.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
   const validateForm = () => {

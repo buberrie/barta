@@ -2,28 +2,20 @@
 "use client";
 import Button from "@/components/Button";
 import { Dropdown } from "@/components/Dropdown";
-import {
-  trades,
-  currencyCrypto,
-  currencyFiat,
-  wallets,
-
-} from "@/constant";
+import { trades, currencyCrypto, currencyFiat, wallets } from "@/constant";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
 export const TradeCard = () => {
-  const [formValues, setFormValues] = useState(
-    {
-      wallet: "",
-      amount: null,
-      currencyFrom: "",
-      currencyTo: "",
-      conversionChannel: currencyCrypto[0],
-      tradeType: trades[0],
-      cryptoCurrency: currencyCrypto[0],
-    }
-  )
+  const [formValues, setFormValues] = useState({
+    wallet: "",
+    amount: null,
+    currencyFrom: "",
+    currencyTo: "",
+    conversionChannel: currencyCrypto[0],
+    tradeType: trades[0],
+    cryptoCurrency: currencyCrypto[0],
+  });
 
   // for scroll to error field, create refs for each input field
   const refs = useRef({
@@ -36,39 +28,44 @@ export const TradeCard = () => {
     cryptoCurrency: null,
   });
 
-   const [transaction, setTransaction] = useState("buy");
+  const [transaction, setTransaction] = useState("buy");
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
     const newErrors = {};
 
     if (formValues.tradeType.id == "fiat") {
-      if (!formValues.currencyFrom ) {
+      if (!formValues.currencyFrom) {
         newErrors.currencyFrom = "Please select a currency.";
       }
-      
-      if (!formValues.currencyTo ) {
-      newErrors.currencyTo = "Please select a currency.";
+
+      if (!formValues.currencyTo) {
+        newErrors.currencyTo = "Please select a currency.";
       }
 
-      if(formValues.currencyTo && formValues.currencyFrom == formValues.currencyTo) {
-      newErrors.currencys = ` Can not exchange ${formValues.currencyFrom.value} for ${formValues.currencyTo.value}`;
+      if (
+        formValues.currencyTo &&
+        formValues.currencyFrom == formValues.currencyTo
+      ) {
+        newErrors.currencys = ` Can not exchange ${formValues.currencyFrom.value} for ${formValues.currencyTo.value}`;
       }
 
       if (!formValues.conversionChannel) {
         newErrors.conversionChannel = "Select conversion channel.";
       }
     }
-    
+
     if (!formValues.amount) {
       newErrors.amount = "Enter amount to spend.";
     } else if (
-      formValues.currencyFrom && formValues.tradeType.id == "fiat" &&
+      formValues.currencyFrom &&
+      formValues.tradeType.id == "fiat" &&
       parseFloat(formValues.amount) < parseFloat(formValues.currencyFrom.min)
     ) {
       newErrors.amount = `Amount must be at least ${formValues.currencyFrom.min} ${formValues.currencyFrom.value}.`;
     } else if (
-      formValues.cryptoCurrency && formValues.tradeType.id == "crypto" &&
+      formValues.cryptoCurrency &&
+      formValues.tradeType.id == "crypto" &&
       parseFloat(formValues.amount) < parseFloat(formValues.cryptoCurrency.min)
     ) {
       newErrors.amount = `Amount must be at least ${formValues.cryptoCurrency.min} ${formValues.cryptoCurrency.id}.`;
@@ -77,7 +74,7 @@ export const TradeCard = () => {
     if (!formValues.wallet) {
       newErrors.wallet = "Select payment method.";
     }
-    
+
     if (!formValues.cryptoCurrency && formValues.tradeType.id == "crypto") {
       newErrors.cryptoCurrency = "Select payment methid.";
     }
@@ -104,12 +101,12 @@ export const TradeCard = () => {
 
     // clear errors as well
     setErrors({});
-  }
+  };
 
   // reset inputs on trade type toggle
   useEffect(() => {
-    clearAllFields()
-  }, [formValues.tradeType])
+    clearAllFields();
+  }, [formValues.tradeType]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -119,7 +116,6 @@ export const TradeCard = () => {
     } else {
       clearAllFields();
     }
-
   };
 
   const handleFieldChange = (field, value) => {
@@ -149,16 +145,25 @@ export const TradeCard = () => {
     }
   };
 
-    // Function to scroll to the field with an error
-    const scrollToErrorField = (field) => {
-      const ref = refs.current[field];
-      if (ref) {
-        ref.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    };
+  useEffect(() => {
+    setErrors((prevErrors) => {
+      const { currencys, ...rest } = prevErrors;
+      return rest;
+    });
+  }, [formValues.currencyFrom, formValues.currencyTo]);
+
+  // Function to scroll to the field with an error
+  const scrollToErrorField = (field) => {
+    const ref = refs.current[field];
+    if (ref) {
+      ref.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
 
   return (
-    <form onSubmit={handleFormSubmit} className="relative base:w-[35rem] w-full py-6 base:px-8 px-4 bg-blur border-[0.5px] border-black_300 rounded-[0.375rem]">
+    <form
+      onSubmit={handleFormSubmit}
+      className="relative base:w-[35rem] w-full py-6 base:px-8 px-4 bg-blur border-[0.5px] border-black_300 rounded-[0.375rem]">
       {/* currency conversion */}
       <div className="relative w-full flex justify-end">
         <Dropdown
@@ -194,10 +199,10 @@ export const TradeCard = () => {
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         } top-0 relative transition-opacity duration-500`}>
-       
         {/* select currenies to convert from and to */}
-        <div ref={(el) => (refs.current.currencys = el)} className="flex-center gap-6 base:mt-16 mt-14"  >
-          
+        <div
+          ref={(el) => (refs.current.currencys = el)}
+          className="flex-center gap-6 base:mt-16 mt-14">
           {/* currency from dropdown */}
           <Dropdown
             options={currencyFiat}
@@ -265,7 +270,12 @@ export const TradeCard = () => {
             ref={(el) => (refs.current.currencyTo = el)}
           />
           {/* error message */}
-          <p className={`absolute base:top-[1.6rem] top-[1.5rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${errors.currencys ? "opacity-100" : "opacity-0"}`}>{errors.currencys}</p>
+          <p
+            className={`absolute base:top-[1.6rem] top-[1.5rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${
+              errors.currencys ? "opacity-100" : "opacity-0"
+            }`}>
+            {errors.currencys}
+          </p>
         </div>
 
         {/* Chose where to fund transaction from */}
@@ -283,7 +293,9 @@ export const TradeCard = () => {
           <div className=" flex items-center gap-2 mt-4 relative -top-8">
             {wallets.slice(0, 6).map((wallet) => (
               <div
-              onClick={() => handleFieldChange("wallet", { value: wallet.value })}
+                onClick={() =>
+                  handleFieldChange("wallet", { value: wallet.value })
+                }
                 key={wallet.id}
                 className="icon">
                 <Image
@@ -306,7 +318,12 @@ export const TradeCard = () => {
               + 200 more
             </span>
           </div>
-          <p className={`absolute base:top-[1.4rem] top-[1.3rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${errors.wallet ? "opacity-100" : "opacity-0"}`}>{errors.wallet}</p>
+          <p
+            className={`absolute base:top-[1.4rem] top-[1.3rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${
+              errors.wallet ? "opacity-100" : "opacity-0"
+            }`}>
+            {errors.wallet}
+          </p>
         </div>
 
         {/* amount to convert */}
@@ -316,7 +333,6 @@ export const TradeCard = () => {
             className={` pay-with relative ${
               formValues.amount ? "base:mt-16 mt-14" : "base:mt-12 mt-10"
             } transition-all cursor-pointer flex justify-between items-center`}>
-            
             <label
               htmlFor="amount"
               className={` absolute pointer-events-none ${
@@ -338,10 +354,18 @@ export const TradeCard = () => {
             </span>
           </div>
           <span className=" relative -top-6 text-black_200 text-[0.75rem]">
-            Minimium: <span className="mr-[0.15rem]">{formValues.currencyFrom ? formValues.currencyFrom.min : "--"}</span>
+            Minimium:{" "}
+            <span className="mr-[0.15rem]">
+              {formValues.currencyFrom ? formValues.currencyFrom.min : "--"}
+            </span>
             {formValues.currencyFrom ? formValues.currencyFrom.value : "--"}
           </span>
-          <p className={`absolute base:top-[1.35rem] top-[1.2rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${errors.amount ? "opacity-100" : "opacity-0"}`}>{errors.amount}</p>
+          <p
+            className={`absolute base:top-[1.35rem] top-[1.2rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${
+              errors.amount ? "opacity-100" : "opacity-0"
+            }`}>
+            {errors.amount}
+          </p>
         </div>
 
         {/* conversion chanel */}
@@ -384,7 +408,12 @@ export const TradeCard = () => {
           <span className=" relative base:-top-6 -top-5 text-black_200 text-[0.8rem]">
             1 USDT = 1.00 USD
           </span>
-        <p className={`absolute base:top-[2.7rem] top-[2.35rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${errors.conversionChannel ? "opacity-100" : "opacity-0"}`}>{errors.conversionChannel}</p>
+          <p
+            className={`absolute base:top-[2.7rem] top-[2.35rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${
+              errors.conversionChannel ? "opacity-100" : "opacity-0"
+            }`}>
+            {errors.conversionChannel}
+          </p>
         </div>
       </div>
 
@@ -396,7 +425,6 @@ export const TradeCard = () => {
             : "opacity-0 pointer-events-none"
         } top-14 absolute transition-opacity duration-500`}
         style={{ width: "calc(100% - var(--space))" }}>
-        
         {/* buy or sell */}
         <div className="flex-center">
           <div className="base:text-[1.5rem] text-[1.125rem] w-fit flex-center base:mt-10 mt-6 font-[Coolvetica]">
@@ -463,7 +491,12 @@ export const TradeCard = () => {
             1 USDT = 1.00 USD
           </span>
 
-        <p className={`absolute top-[1.3rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${errors.cryptoCurrency ? "opacity-100" : "opacity-0"}`}>{errors.cryptoCurrency}</p>
+          <p
+            className={`absolute top-[1.3rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${
+              errors.cryptoCurrency ? "opacity-100" : "opacity-0"
+            }`}>
+            {errors.cryptoCurrency}
+          </p>
         </div>
 
         {/* Chose where to fund transaction from */}
@@ -481,7 +514,9 @@ export const TradeCard = () => {
           <div className="flex items-center gap-2 mt-4 relative base:-top-8 -top-9">
             {wallets.slice(0, 6).map((wallet) => (
               <div
-              onClick={() => handleFieldChange("wallet", { value: wallet.value })}
+                onClick={() =>
+                  handleFieldChange("wallet", { value: wallet.value })
+                }
                 key={wallet.id}
                 className="icon">
                 <Image
@@ -503,7 +538,12 @@ export const TradeCard = () => {
             <span className="whitespace-nowrap cursor-pointer text-[0.8rem] text-black_300 hover:text-white hover:underline transition-all">
               + 200 more
             </span>
-          <p className={`absolute base:-top-[1.48rem] -top-[1.35rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${errors.wallet ? "opacity-100" : "opacity-0"}`}>{errors.wallet}</p>
+            <p
+              className={`absolute base:-top-[1.48rem] -top-[1.35rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${
+                errors.wallet ? "opacity-100" : "opacity-0"
+              }`}>
+              {errors.wallet}
+            </p>
           </div>
         </div>
 
@@ -530,19 +570,34 @@ export const TradeCard = () => {
               onChange={handleInputChange}
               className="input py-[0.15rem] text-black_100 w-[70%]"
             />
-            <span className="text-[0.75rem] mr-4 font-[Supreme-Bold] uppercase">{formValues.cryptoCurrency ? formValues.cryptoCurrency.id : "--"}</span>
+            <span className="text-[0.75rem] mr-4 font-[Supreme-Bold] uppercase">
+              {formValues.cryptoCurrency ? formValues.cryptoCurrency.id : "--"}
+            </span>
           </div>
           <span className=" relative -top-6 text-black_200 text-[0.75rem]">
-            Minimium: <span className="mr-[0.15rem]">{formValues.cryptoCurrency ? formValues.cryptoCurrency.min : "--"}</span> <span className="uppercase">{formValues.cryptoCurrency ? formValues.cryptoCurrency.id : "--"}</span>
+            Minimium:{" "}
+            <span className="mr-[0.15rem]">
+              {formValues.cryptoCurrency ? formValues.cryptoCurrency.min : "--"}
+            </span>{" "}
+            <span className="uppercase">
+              {formValues.cryptoCurrency ? formValues.cryptoCurrency.id : "--"}
+            </span>
           </span>
-          <p className={`absolute base:top-[1.38rem] top-[1.2rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${errors.amount ? "opacity-100" : "opacity-0"}`}>{errors.amount}</p>
+          <p
+            className={`absolute base:top-[1.38rem] top-[1.2rem] text-[#fd5265] transition-all base:text-s text-xs mt-2 ${
+              errors.amount ? "opacity-100" : "opacity-0"
+            }`}>
+            {errors.amount}
+          </p>
         </div>
-        </div>
+      </div>
 
       {/* prefered merchant */}
       <div
         className={` ${
-          formValues.tradeType?.id == "fiat" ? "base:mt-6 mt-3" : "base:mt-0 -mt-[2rem]"
+          formValues.tradeType?.id == "fiat"
+            ? "base:mt-6 mt-3"
+            : "base:mt-0 -mt-[2rem]"
         } cursor-pointer base:text-[0.9375rem] text-s`}>
         +{" "}
         <span className=" text-black_100 underline hover:text-white transition-all">
@@ -551,7 +606,11 @@ export const TradeCard = () => {
       </div>
 
       {/* button */}
-      <div className="base:mt-[4.5rem] mt-[3.5rem] " onClick={() => {console.log('clicked')}}>
+      <div
+        className="base:mt-[4.5rem] mt-[3.5rem] "
+        onClick={() => {
+          console.log("clicked");
+        }}>
         <Button type="submit" text="Find offers" variant="btn-primary" />
       </div>
     </form>

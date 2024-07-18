@@ -55,7 +55,7 @@ export const GetStarted = () => {
       });
     };
 
-    const interval = setInterval(updateProgress, 100);
+    const interval = setInterval(updateProgress, 80);
 
     // scroll current li item into view
     const currentItem = ulRef.current.querySelectorAll("li")[currentTaskIndex];
@@ -80,7 +80,7 @@ export const GetStarted = () => {
     setImgUrl(newImgUrl);
     setTimeout(() => {
       setAnimation("fadeIn 0.5s forwards");
-    }, 250);
+    }, 300);
   }, [currentTaskIndex]);
 
   return (
@@ -212,7 +212,7 @@ export const GetStarted = () => {
             <img
               src="/assets/svgs/browser.svg"
               alt="browser"
-              className="w-full h-full base:rounded-t-[0.625rem] rounded-t-[0.35rem] object-contain"
+              className="w-full h-full base:rounded-t-[0.625rem] rounded-t-[0.35rem] object-cover"
             />
             </div>
             <div

@@ -10,8 +10,8 @@ export const Hero = () => {
             Get the <span className="linear-text">best exchange rates</span>
           </div>
           <div className="relative">
-            <span className="relative base:-left-[6.5rem] -left-[1.7rem] ">for your</span>
-            <div className="relative flex flex-col base:-top-20 base:left-[7.5rem] -top-[2.7rem] left-[4.5rem]">
+            <span className="relative base:-left-[6rem] -left-[2rem] ">for your</span>
+            <div className="relative flex flex-col base:-top-20 base:left-[8rem] -top-[2.7rem] left-[4.2rem]">
               <span className="relative salary">salary</span>
               <span className="absolute crypto">crypto</span>
               <span className="absolute fiat">fiat</span>

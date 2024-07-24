@@ -165,14 +165,21 @@ export const TradeCard = () => {
   };
 
   const handleInputChange = (e) => {
-    const newValue = e.target.value;
+    let newValue = e.target.value;
+  
     // Allow only numbers and empty string
-    if (newValue === "" || /^[0-9]*$/.test(newValue)) {
+    if (newValue === "" || /^[0-9]*$/.test(newValue.replace(/,/g, ''))) {
+      // Remove existing commas
+      newValue = newValue.replace(/,/g, '');
+  
+      // Format the value with commas
+      const formattedValue = newValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+  
       setFormValues((prevValues) => ({
         ...prevValues,
-        amount: newValue,
+        amount: formattedValue,
       }));
-
+  
       setErrors((prevErrors) => ({
         ...prevErrors,
         amount: "", // Clear the error for the field

@@ -384,7 +384,7 @@ Image {
 }
 
 .grid-card > span {
-  @apply text-black_200 base:text-sm text-s font-[Supreme-Medium] uppercase;
+  @apply text-black_200 base:text-sm text-s font-[Supreme-Medium] uppercase tracking-[0.15em];
 }
 
 .grid-card > h3,
@@ -613,7 +613,6 @@ Image {
   to {
     top: 1rem;
     opacity: 0;
-    height: 0;
   }
 }
 
@@ -771,19 +770,34 @@ Image {
       }
   }
 
+  @media (max-width: 599px) {
+    :root {
+      /* width and height for line animation svg */
+      --svg-width: 24.5rem; /* 368px / 16 */
+      --svg-height: 34.375rem; /* 550px / 16 */
+  
+      --space: 2rem;
+    }
+  }
 
-@media (max-width: 599px) {
+
+@media only screen and (min-width: 450px) and (max-width: 599px) {
 
   .scroll-snap {
       scroll-padding-inline: 1rem;
     }
 
-  :root {
-    /* width and height for line animation svg */
-    --svg-width: 23.5rem; /* 368px / 16 */
-    --svg-height: 34.375rem; /* 550px / 16 */
+    html {
+      font-size: 20px;
+    }
+}
 
-    --space: 2rem;
+@media (max-width: 450px) {
+
+  :root {
+    /* width for line animation svg */
+    --svg-width: 23.5rem; /* 368px / 16 */
+
   }
 }
 
@@ -794,8 +808,20 @@ Image {
   }
 
   :root {
-    /* width and height for line animation svg */
+    /* width for line animation svg */
     --svg-width: 22.5rem; /* 368px / 16 */
 
+  }
+}
+
+@media (max-width: 345px) {
+
+  html {
+    font-size: 13px;
+  }
+
+  :root {
+    /* width and height for line animation svg */
+    --svg-width: 24rem; /* 368px / 16 */
   }
 }

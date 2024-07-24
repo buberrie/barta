@@ -138,7 +138,7 @@ export const GetStarted = () => {
           {/* list items */}
           <ul
             ref={ulRef}
-            className="overflow-auto overflow-container base:h-[15rem] h-[16.5rem] py-5 space-y-4 mt-4 transition-all scroll-blur_s">
+            className="overflow-auto overflow-container base:h-[15rem] h-[16rem] py-5 space-y-4 mt-4 transition-all scroll-blur_s">
             {getStarted.map((item, index) => (
               <li
                 key={item.id}

@@ -100,7 +100,7 @@ export const Dropdown = forwardRef((props, ref) => {
         className={` ${
           !isOpen
             ? "top-1 opacity-0 h-0 pointer-events-none dropdown-close-animation"
-            : " top-0 opacity-1 h-fit max-h-[8.5rem] pointer-events-auto dropdown-open-animation"
+            : " top-0 opacity-100 h-fit base:max-h-[7.6rem] max-h-[6.5rem] pointer-events-auto dropdown-open-animation"
         } transition-all overflow-y-scroll overflow-container h-fit max-h-[8.5rem] duration-300 absolute z-[1] w-full border-[0.5px] border-black_100 rounded-lg divide-y-[0.1px] divide-black_200 bg-[#222222d3] backdrop-blur-[100px]`}
         role="menu"
         aria-orientation="vertical"

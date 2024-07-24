@@ -46,7 +46,7 @@ export const LineAnimation = () => {
           {/* Define the path for the animated line */}
           <path
             id="animated-line"
-            d="M 5 10 L 348 10 L 348 525 L 5 525 Z"
+            d="M 0 10 L 358 10 L 358 525 L 0 525 Z"
             fill="none"
             stroke="#000000"
             strokeWidth="1rem"

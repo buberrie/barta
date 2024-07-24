@@ -46,7 +46,7 @@ export const BuiltFor = () => {
         {/* payment solution */}
         <div className="grid-card col-span-2 relative base:h-fit h-[23.125rem]">
           <span>payment solutions</span>
-          <Image src="/assets/images/Images.png" alt="images" width={500} height={500} className=" base:w-[35rem] base:h-[40.5rem] w-full h-[24rem] absolute base:-top-[13.5rem] top-0 base:-right-[6.5rem] -right-[4.5rem] " />
+          <Image src="/assets/images/Images.png" alt="images" width={500} height={500} className=" base:w-[35rem] base:h-[40.5rem] w-full h-fit absolute base:-top-[13.5rem] top-0 base:-right-[6.5rem] -right-[4.5rem] " />
           <h3 className="md:w-[40%] w-[50%]">Variety of payment methods</h3>
         </div>
         {/* ai matching */}

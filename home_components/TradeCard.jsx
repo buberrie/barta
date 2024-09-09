@@ -49,7 +49,7 @@ export const TradeCard = () => {
           btc: formatNumber(response.data.btc),
           eth: formatNumber(response.data.eth),
         });
-        console.log(exchangeRates);
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }

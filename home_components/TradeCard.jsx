@@ -98,13 +98,13 @@ export const TradeCard = () => {
       formValues.tradeType.id == "fiat" &&
       parseFloat(amount) < parseFloat(formValues.currencyFrom.min)
     ) {
-      newErrors.amount = `Amount must be at least ${formatNumber(formValues.currencyFrom.min)} ${formValues.currencyFrom.value}.`;
+      newErrors.amount = `Amount must be at least ${formValues.currencyFrom.min} ${formValues.currencyFrom.value}.`;
     } else if (
       formValues.cryptoCurrency &&
       formValues.tradeType.id == "crypto" &&
       parseFloat(amount) < parseFloat(formValues.cryptoCurrency.min)
     ) {
-      newErrors.amount = `Amount must be at least ${formatNumber(formValues.currencyFrom.min)} ${formValues.cryptoCurrency.id}.`;
+      newErrors.amount = `Amount must be at least ${formValues.currencyFrom.min} ${formValues.cryptoCurrency.id}.`;
     }
 
     if (!formValues.wallet) {

@@ -90,20 +90,21 @@ export const TradeCard = () => {
       }
     }
 
+    const amount = formValues.amount ? parseFloat(formValues.amount.replace(/,/g, '')) : 0;
     if (!formValues.amount) {
       newErrors.amount = "Enter amount to spend.";
     } else if (
       formValues.currencyFrom &&
       formValues.tradeType.id == "fiat" &&
-      parseFloat(formValues.amount) < parseFloat(formValues.currencyFrom.min)
+      parseFloat(amount) < parseFloat(formValues.currencyFrom.min)
     ) {
-      newErrors.amount = `Amount must be at least ${formValues.currencyFrom.min} ${formValues.currencyFrom.value}.`;
+      newErrors.amount = `Amount must be at least ${formatNumber(formValues.currencyFrom.min)} ${formValues.currencyFrom.value}.`;
     } else if (
       formValues.cryptoCurrency &&
       formValues.tradeType.id == "crypto" &&
-      parseFloat(formValues.amount) < parseFloat(formValues.cryptoCurrency.min)
+      parseFloat(amount) < parseFloat(formValues.cryptoCurrency.min)
     ) {
-      newErrors.amount = `Amount must be at least ${formValues.cryptoCurrency.min} ${formValues.cryptoCurrency.id}.`;
+      newErrors.amount = `Amount must be at least ${formatNumber(formValues.currencyFrom.min)} ${formValues.cryptoCurrency.id}.`;
     }
 
     if (!formValues.wallet) {
